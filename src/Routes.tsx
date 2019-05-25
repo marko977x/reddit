@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './containers/Home';
-import Post from './components/post/Post';
 import OpenedPost from './containers/OpenedPost';
 
 class Routes extends Component {

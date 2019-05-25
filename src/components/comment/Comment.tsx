@@ -3,22 +3,27 @@ import { Card, CardContent, Typography, CardActions, Collapse, IconButton, Avata
 import Likes from '../post/Likes';
 import styles from "./css/comment.module.css";
 import expandIcon from "../../assets/expand_icon.png";
+import { CommentState } from '../../store/post/types';
+import { argumentPlaceholder } from '@babel/types';
 
-class Comment extends Component {
+interface IProps {
+  commentState: CommentState
+}
+
+class Comment extends Component<IProps> {
   render() {
+    const {author, comments, content, id, likes} = this.props.commentState;
     return (
       <div>
         <Card className={styles.comment}>
           <CardContent className={styles.content}>
-            <Typography className={styles.caption} variant="caption">Answer by marko977x</Typography>
+            <Typography className={styles.caption} variant="caption">Answer by {author}</Typography>
             <CardContent>
-              <Typography variant="body1">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-              </Typography>
+              <Typography variant="body1">{content}</Typography>
             </CardContent>
           </CardContent>
           <CardActions className={styles.commentSidebar}>
-            <Likes likes={1} IsInCommentSection={true}></Likes>
+            <Likes likes={likes} IsInCommentSection={true}></Likes>
             <IconButton
               className={styles.expandButton}
               aria-expanded={false}

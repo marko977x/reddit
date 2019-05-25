@@ -7,6 +7,7 @@ import { PostState } from '../store/post/types';
 import { AppState } from '../store';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import styles from "../components/posts/css/posts.module.css";
 
 interface PropsFromState {
   postsState: PostsState
@@ -24,14 +25,13 @@ type allProps = PropsFromState & PropsFromDispatch & RouteComponentProps<{ id: s
 
 class OpenedPost extends Component<allProps, IState> {
   render() {
-    console.log(this.props);
     return (
       <div>
         <Header isHomePage={true}></Header>
-        <Post 
-          post={this.props.postsState.posts[parseInt(this.props.match.params.id)]} 
+        <div className={styles.postsContainer}><Post
+          post={this.props.postsState.posts[parseInt(this.props.match.params.id)]}
           isCommentFormVisible={true}>
-        </Post>
+        </Post></div>
       </div>
     );
   }

@@ -1,12 +1,13 @@
 .post {
   width: 60%;
+  display: flex;
+  flex-direction: column;
 }
 
 .postCard {
   margin: 20px;
   display:flex;
-  /* align-content: center; */
-  width: 100%;
+  flex: 1;
 }
 
 .postSidebar {
@@ -16,10 +17,17 @@
 }
 
 .cardContent {
+  flex: 1;
   display:flex;
   flex-direction: column;
+}
+
+.buttonBase {
+  display: flex;
+  flex-direction: column;
   align-items: flex-start !important;
-  width: 100% !important;
+  height: 100%;
+  width: 100%;
 }
 
 .cardActionContent {
