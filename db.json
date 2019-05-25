@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "author": "marko977x",
+      "comments": [],
+      "content": "I'm gonna be the best!",
+      "id": 1,
+      "likes": 1,
+      "topic": "Personal"
+    },
+    {
+      "author": "marko977x",
+      "comments": [],
+      "content": "I'm gonna be the best also in the second post!",
+      "id": 2,
+      "likes": 10,
+      "topic": "Personal"
+    },
+    {
+      "author": "marko977x",
+      "comments": [],
+      "content": "I'm gonna be the best also in the third post!",
+      "id": 3,
+      "likes": 10,
+      "topic": "Personal"
+    }
+  ]
+}
