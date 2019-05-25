@@ -1,0 +1,31 @@
+.post {
+  width: 60%;
+}
+
+.postCard {
+  margin: 20px;
+  display:flex;
+  /* align-content: center; */
+  width: 100%;
+}
+
+.postSidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardContent {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  width: 100% !important;
+}
+
+.cardActionContent {
+  width: 100% !important;
+}
+
+.hidden {
+  display: none !important;
+}

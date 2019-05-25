@@ -1,0 +1,54 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.redditLogo {
+  display: flex;
+  flex: 1;
+}
+
+.redditIcon {
+  margin-right: 10px;
+}
+
+.searchArea {
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex: 1;
+}
+
+.searchInput {
+  width:100%;
+  padding: 1%;
+}
+
+.redditTypography {
+  margin-right: 10px !important;
+}
+
+.signUp {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  margin-right: 10px !important;
+  margin-left: 10px !important;
+}
+
+.accountMenu {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.accountIcon {
+  background-color: white;
+}
+
+.hidden {
+  display: none;
+}
