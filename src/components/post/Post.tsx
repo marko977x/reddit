@@ -7,10 +7,11 @@ import PostContent from './PostContent';
 import { PostState } from '../../store/post/types';
 import { Redirect } from 'react-router-dom';
 import Comment from '../comment/Comment';
+import CommentForm from '../commentForm/CommentForm';
 
 interface IProps {
   post: PostState,
-  isCommentFormVisible: boolean
+  isOpened: boolean
 }
 
 interface IState {
@@ -32,16 +33,16 @@ class Post extends Component<IProps, IState> {
           <CardActions className={styles.postSidebar}>
             <Likes likes={this.props.post.likes} IsInCommentSection={false}></Likes>
           </CardActions>
-        {this.props.isCommentFormVisible ? this.renderOpenedPost() : this.renderPost()}
+        {this.props.isOpened ? this.renderOpenedPost() : this.renderPost()}
         </Card>
-        {this.props.isCommentFormVisible ? this.renderComments() : ""}
+        {this.props.isOpened ? this.renderComments() : ""}
       </div>
     );
   }
 
   renderPost = () => {
     return (
-      <ButtonBase disableRipple={this.props.isCommentFormVisible} onClick={this.onPostClick} className={styles.buttonBase}>
+      <ButtonBase disableRipple={this.props.isOpened} onClick={this.onPostClick} className={styles.buttonBase}>
         {this.renderCardContent()}
       </ButtonBase>);
   }
@@ -60,6 +61,7 @@ class Post extends Component<IProps, IState> {
         <CardContent>
           <PostContent content={this.props.post.content}></PostContent>
         </CardContent>
+        {this.props.isOpened ? <CommentForm></CommentForm> : ""}
       </CardContent>
     );
   }
@@ -72,7 +74,7 @@ class Post extends Component<IProps, IState> {
   }
 
   onPostClick = () => {
-    this.setState({redirect: !this.props.isCommentFormVisible});
+    this.setState({redirect: !this.props.isOpened});
   }
 }
 

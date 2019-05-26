@@ -28,10 +28,12 @@ class OpenedPost extends Component<allProps, IState> {
     return (
       <div>
         <Header isHomePage={true}></Header>
-        <div className={styles.postsContainer}><Post
-          post={this.props.postsState.posts[parseInt(this.props.match.params.id)]}
-          isCommentFormVisible={true}>
-        </Post></div>
+        <div className={styles.postsContainer}>
+          <Post
+            post={this.props.postsState.posts[parseInt(this.props.match.params.id)]}
+            isOpened={true}>
+          </Post>
+        </div>
       </div>
     );
   }

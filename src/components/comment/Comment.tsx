@@ -4,13 +4,20 @@ import Likes from '../post/Likes';
 import styles from "./css/comment.module.css";
 import expandIcon from "../../assets/expand_icon.png";
 import { CommentState } from '../../store/post/types';
-import { argumentPlaceholder } from '@babel/types';
 
 interface IProps {
   commentState: CommentState
 }
 
-class Comment extends Component<IProps> {
+interface IState {
+  expand: boolean
+}
+
+class Comment extends Component<IProps, IState> {
+  readonly state = {
+    expand: false
+  }
+  
   render() {
     const {author, comments, content, id, likes} = this.props.commentState;
     return (
@@ -27,11 +34,15 @@ class Comment extends Component<IProps> {
             <IconButton
               className={styles.expandButton}
               aria-expanded={false}
-              aria-label="Show more">
+              aria-label="Show more"
+              onClick={() => this.setState({expand: !this.state.expand})}>
               <Avatar src={expandIcon}></Avatar>
             </IconButton>
           </CardActions>
-          <Collapse unmountOnExit>
+          <Collapse in={this.state.expand} unmountOnExit>
+            {this.props.commentState.comments.map(item => {
+              return(<Comment key={item.id} commentState={item}></Comment>)
+            })}
           </Collapse>
         </Card>
       </div>

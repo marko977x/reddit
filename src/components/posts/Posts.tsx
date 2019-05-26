@@ -31,7 +31,7 @@ class Posts extends Component<allProps> {
         {this.props.postsState.posts.map(post => {
           return (
             <Post
-              isCommentFormVisible={!this.props.isHomePage}
+              isOpened={!this.props.isHomePage}
               key={post.id}
               post={post}>
             </Post>

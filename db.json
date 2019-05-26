@@ -8,7 +8,15 @@
           "author": "joca",
           "content": "That's right!",
           "likes": 10,
-          "comments": []
+          "comments": [
+            {
+              "id": 2,
+              "author": "joca",
+              "content": "I just reply to myself! :D",
+              "likes": 0,
+              "comments": []
+            }
+          ]
         }
       ],
       "content": "I'm gonna be the best!",

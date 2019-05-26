@@ -12,7 +12,7 @@ export interface CommentState {
   author: string,
   content: string,
   likes: number,
-  comments: Comment[]
+  comments: CommentState[]
 }
 
 export enum PostActionTypes {
