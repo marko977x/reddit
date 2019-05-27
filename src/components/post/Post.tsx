@@ -8,10 +8,15 @@ import { PostState } from '../../store/post/types';
 import { Redirect } from 'react-router-dom';
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
+import { likePost, likeComment, dislikeComment, dislikePost } from '../../store/posts/action';
 
 interface IProps {
   post: PostState,
-  isOpened: boolean
+  isOpened: boolean,
+  likePost: typeof likePost,
+  likeComment: typeof likeComment,
+  dislikePost: typeof dislikePost,
+  dislikeComment: typeof dislikeComment
 }
 
 interface IState {
@@ -31,7 +36,12 @@ class Post extends Component<IProps, IState> {
       <div className={styles.post}>
         <Card className={styles.postCard}>
           <CardActions className={styles.postSidebar}>
-            <Likes likes={this.props.post.likes} IsInCommentSection={false}></Likes>
+            <Likes 
+              like={this.props.likePost} 
+              dislike={this.props.dislikePost}
+              ownerId={this.props.post.id}
+              likes={this.props.post.likes} IsInCommentSection={false}>
+            </Likes>
           </CardActions>
         {this.props.isOpened ? this.renderOpenedPost() : this.renderPost()}
         </Card>
@@ -67,9 +77,13 @@ class Post extends Component<IProps, IState> {
   }
 
   renderComments = () => {
-    console.log(this.props.post);
     return(this.props.post.comments.map(comment => {
-      return(<Comment commentState={comment} key={comment.id}></Comment>);
+      return(
+        <Comment
+          dislike={this.props.dislikeComment}
+          like={this.props.likeComment}
+          commentState={comment} key={comment.id}></Comment>
+      );
     }));
   }
 

@@ -10,6 +10,7 @@ export interface PostState {
 export interface CommentState {
   id: string,
   author: string,
+  postId: string,
   content: string,
   likes: number,
   comments: CommentState[]

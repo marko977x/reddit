@@ -8,7 +8,9 @@ import { CommentState } from '../../store/post/types';
 import CommentForm from '../commentForm/CommentForm';
 
 interface IProps {
-  commentState: CommentState
+  commentState: CommentState,
+  like: any,
+  dislike: any
 }
 
 interface IState {
@@ -23,7 +25,7 @@ class Comment extends Component<IProps, IState> {
   }
   
   render() {
-    const {author, comments, content, id, likes} = this.props.commentState;
+    const {author, content, likes} = this.props.commentState;
     return (
       <div>
         <Card className={styles.comment}>
@@ -37,7 +39,11 @@ class Comment extends Component<IProps, IState> {
             </Collapse>
           </CardContent>
           <CardActions className={styles.commentSidebar}>
-            <Likes likes={likes} IsInCommentSection={true}></Likes>
+            <Likes
+              like={this.props.like}
+              dislike={this.props.dislike}
+              ownerId={this.props.commentState.id}
+              likes={likes} IsInCommentSection={true}></Likes>
             <IconButton
               className={styles.expandButton}
               aria-expanded={false}
@@ -53,7 +59,12 @@ class Comment extends Component<IProps, IState> {
           </CardActions>
           <Collapse in={this.state.expandComments} unmountOnExit>
             {this.props.commentState.comments.map(item => {
-              return(<Comment key={item.id} commentState={item}></Comment>)
+              return(
+                <Comment 
+                  like={this.props.like} dislike={this.props.dislike}
+                  key={item.id} commentState={item}>
+                </Comment>
+              )
             })}
           </Collapse>
         </Card>

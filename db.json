@@ -20,24 +20,24 @@
         }
       ],
       "content": "I'm gonna be the best!",
-      "id": "0",
-      "likes": 1,
+      "id": "nogiaen",
+      "likes": 11,
       "topic": "Personal"
     },
     {
       "author": "marko977x",
       "comments": [],
       "content": "I'm gonna be the best also in the second post!",
-      "id": "1",
-      "likes": 10,
+      "id": "naoebdwa",
+      "likes": 13,
       "topic": "Personal"
     },
     {
       "author": "marko977x",
       "comments": [],
       "content": "I'm gonna be the best also in the third post!",
-      "id": "2",
-      "likes": 10,
+      "id": "bofjbael",
+      "likes": 13,
       "topic": "Personal"
     }
   ]
