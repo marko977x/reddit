@@ -25,7 +25,7 @@ class Post extends Component<IProps, IState> {
 
   render() {
     if(this.state.redirect) {
-      return <Redirect push to={this.props.post.id.toString()} />
+      return <Redirect push to={this.props.post.id} />
     }
     return (
       <div className={styles.post}>

@@ -50,7 +50,7 @@ const mapStateToProps = (appState: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    openPost: (id: number) => dispatch(openPost(id)),
+    openPost: (id: string) => dispatch(openPost(id)),
     fetchPosts: () => dispatch(fetchPosts()),
     loadPosts: (postsState: PostsState) => dispatch(loadPosts(postsState))
   }

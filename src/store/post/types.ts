@@ -1,5 +1,5 @@
 export interface PostState {
-  id: number
+  id: string
   author: string,
   topic: string,
   content: string,
@@ -8,7 +8,7 @@ export interface PostState {
 }
 
 export interface CommentState {
-  id: number,
+  id: string,
   author: string,
   content: string,
   likes: number,

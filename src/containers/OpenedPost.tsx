@@ -25,12 +25,13 @@ type allProps = PropsFromState & PropsFromDispatch & RouteComponentProps<{ id: s
 
 class OpenedPost extends Component<allProps, IState> {
   render() {
+    const {posts} = this.props.postsState;
     return (
       <div>
         <Header isHomePage={true}></Header>
         <div className={styles.postsContainer}>
           <Post
-            post={this.props.postsState.posts[parseInt(this.props.match.params.id)]}
+            post={posts[posts.findIndex((item) => item.id === this.props.match.params.id)]}
             isOpened={true}>
           </Post>
         </div>

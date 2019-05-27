@@ -7,7 +7,7 @@ const initialState: PostsState = {
       author: "marko977x",
       comments: [],
       content: "I'm gonna be the best!",
-      id: 1,
+      id: "1",
       likes: 1,
       topic: "Personal"
     },
@@ -15,7 +15,7 @@ const initialState: PostsState = {
       author: "marko977x",
       comments: [],
       content: "I'm gonna be the best also in the second post!",
-      id: 2,
+      id: "2",
       likes: 10,
       topic: "Personal"
     }
