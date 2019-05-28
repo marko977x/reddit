@@ -1,23 +1,32 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
-import { TodosState } from "./todos/types";
-import { todosReducer } from "./todos/reducer";
 import { all, fork } from "@redux-saga/core/effects";
-import { todosSaga } from "./todos/sagas";
-import { Router } from "react-router";
-import { PostsState } from "./posts/types";
-import { postsReducer } from "./posts/reducer";
+import { appReducer } from "./posts/reducer";
+import { UserState } from "./user/types";
+import { PostState } from "./posts/types";
+import { CommentState } from "./comments/types";
 import { postsSaga } from "./posts/saga";
 
-export interface AppState {
-  postsState: PostsState,
-  todosState: TodosState,
-  router: Router
+export interface NormalizedObjects<T> {
+  byId: { [id: string]: T },
+  allIds: string[]
 }
 
-const rootReducer = combineReducers({
-  todosState: todosReducer,
-  postsState: postsReducer
+export interface UiState {
+  shownPosts: string[],
+  openedPostId: string,
+  isOpenedSignlePost: boolean
+}
+
+export interface AppState {
+  posts: NormalizedObjects<PostState>,
+  comments: NormalizedObjects<CommentState>,
+  users: NormalizedObjects<UserState>,
+  ui: UiState
+}
+
+export const rootReducer = combineReducers({
+  app: appReducer
 });
 
 export default function configureStore() {
@@ -33,7 +42,6 @@ export default function configureStore() {
 
 export function* rootSaga() {
   yield all([
-    fork(todosSaga),
     fork(postsSaga)
   ]);
 }

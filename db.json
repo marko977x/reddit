@@ -1,44 +1,93 @@
 {
-  "posts": [
-    {
-      "author": "marko977x",
-      "comments": [
-        {
-          "id": "1",
-          "author": "joca",
-          "content": "That's right!",
-          "likes": 10,
+  "entities": {
+    "posts": {
+      "byId": {
+        "post1": {
+          "id": "post1",
+          "authorId": "user1",
+          "topic": "Topic",
+          "content": "Content of post",
+          "likes": 1,
           "comments": [
-            {
-              "id": "2",
-              "author": "joca",
-              "content": "I just reply to myself! :D",
-              "likes": 0,
-              "comments": []
-            }
+            "comment1",
+            "comment2"
+          ]
+        },
+        "post2": {
+          "id": "post2",
+          "authorId": "user1",
+          "topic": "Topic",
+          "content": "Content of post",
+          "likes": 1,
+          "comments": [
+            "comment3"
           ]
         }
-      ],
-      "content": "I'm gonna be the best!",
-      "id": "nogiaen",
-      "likes": 11,
-      "topic": "Personal"
+      },
+      "allIds": [
+        "post1",
+        "post2"
+      ]
     },
-    {
-      "author": "marko977x",
-      "comments": [],
-      "content": "I'm gonna be the best also in the second post!",
-      "id": "naoebdwa",
-      "likes": 13,
-      "topic": "Personal"
+    "comments": {
+      "byId": {
+        "comment1": {
+          "id": "comment1",
+          "authorId": "user1",
+          "postId": "post1",
+          "content": "Reply to myself",
+          "likes": 2,
+          "comments": []
+        },
+        "comment2": {
+          "id": "comment2",
+          "authorId": "user1",
+          "postId": "post1",
+          "content": "Reply to myself",
+          "likes": 2,
+          "comments": []
+        },
+        "comment3": {
+          "id": "comment3",
+          "authorId": "user1",
+          "postId": "post2",
+          "content": "Reply to myself",
+          "likes": 2,
+          "comments": []
+        }
+      },
+      "allIds": [
+        "comment1",
+        "comment2",
+        "comment3"
+      ]
     },
-    {
-      "author": "marko977x",
-      "comments": [],
-      "content": "I'm gonna be the best also in the third post!",
-      "id": "bofjbael",
-      "likes": 13,
-      "topic": "Personal"
+    "users": {
+      "byId": {
+        "user1": {
+          "id": "user1",
+          "username": "username1",
+          "email": "usernam@email.com",
+          "password": "password",
+          "posts": [
+            "post1",
+            "post2"
+          ],
+          "comments": [
+            "comment1",
+            "comment2",
+            "comment3"
+          ]
+        }
+      },
+      "allIds": [
+        "user1"
+      ]
+    },
+    "ui": {
+      "shownPosts": [],
+      "isOpenedSinglePost": false,
+      "openedPostId": ""
     }
-  ]
+  }
 }

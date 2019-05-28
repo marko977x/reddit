@@ -6,17 +6,14 @@ import styles from './css/likes.module.css';
 
 interface IProps {
   IsInCommentSection: boolean,
-  likes: number,
-  ownerId: string,
-  like: any,
-  dislike: any
+  likes: number
 }
 
 class Likes extends Component<IProps> {
   render() {
     return (
       <div className={this.props.IsInCommentSection ? styles.horizontal : styles.vertical}>
-        <IconButton className={styles.likeButton} onClick={() => this.props.like(this.props.ownerId)}>
+        <IconButton className={styles.likeButton}>
           <Avatar src={plusIcon}></Avatar>
         </IconButton>
         <div className={styles.likesValue}>
@@ -24,7 +21,7 @@ class Likes extends Component<IProps> {
             {this.props.likes}
           </Typography>
         </div>
-        <IconButton onClick={() => this.props.dislike(this.props.ownerId)} className={styles.likeButton}>
+        <IconButton className={styles.likeButton}>
           <Avatar src={minusIcon}></Avatar>
         </IconButton>
       </div>

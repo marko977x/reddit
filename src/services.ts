@@ -1,5 +1,5 @@
 export function* apiFetch(method: string, url: string, data: any) {
-  let params: RequestInit = {
+  let postParams: RequestInit = {
     body: JSON.stringify(data),
     method: method,
     headers: {
@@ -7,7 +7,17 @@ export function* apiFetch(method: string, url: string, data: any) {
       'Accept': 'application/json, text/plain, */*'
     }
   }
-  let result = yield fetch(url, params);
-  if (result.ok) return result.json();
+  let getParams: RequestInit = {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json, text/plain, */*'
+    }
+  }
+  let result;
+  if (data) result = yield fetch(url, postParams);
+  else result = yield fetch(url, getParams);
+  
+  if (result.ok) return yield result.json();
   else return result.status.toString();
 }

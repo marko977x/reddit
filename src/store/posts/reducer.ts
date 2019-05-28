@@ -1,67 +1,53 @@
-import { PostsState, PostsActionTypes } from "./types";
+import { PostsActionTypes } from "./types";
 import { Reducer } from "redux";
-import { CommentState } from "../post/types";
+import { AppState } from "..";
 
-const initialState: PostsState = {
-  posts: []
+const initialState: AppState = {
+  posts: {
+    byId: {},
+    allIds: []
+  },
+  users: {
+    byId: {},
+    allIds: []
+  },
+  comments: {
+    byId: {},
+    allIds: []
+  },
+  ui: {
+    shownPosts: [],
+    openedPostId: "",
+    isOpenedSignlePost: false
+  }
 }
 
-const reducer: Reducer<PostsState> = (state = initialState, action) => {
+const reducer: Reducer<AppState> = (state = initialState, action) => {
   switch (action.type) {
     case PostsActionTypes.FETCH_POSTS: {
       return state;
     }
     case PostsActionTypes.LOAD_POSTS: {
-      return { posts: action.payload }
+      return {
+        ...state,
+        posts: action.payload.posts,
+        users: action.payload.users,
+        comments: action.payload.comments,
+        ui: {
+          shownPosts: action.payload.posts.allIds.slice(0, 2),
+          openedPostId: "",
+          isOpenedSignlePost: false
+        }
+      }
     }
     case PostsActionTypes.LIKE_POST: {
-      return {
-        ...state, posts: state.posts.map(post => {
-          if (post.id === action.payload) post.likes++;
-          return post;
-        })
-      }
+      return state;
     }
     case PostsActionTypes.DISLIKE_POST: {
-      return {
-        ...state, posts: state.posts.map(post => {
-          if (post.id === action.payload) post.likes--;
-          return post;
-        })
-      }
-    }
-    case PostsActionTypes.LIKE_COMMENT: {
-      return {
-        ...state, posts: state.posts.map(post => {
-          post.comments.forEach(comment => {
-            if(comment.id === action.payload) comment.likes++;
-            else likeComment(comment.comments, action.payload);
-          });
-          return post;
-      })
-      }
-    }
-    case PostsActionTypes.DISLIKE_COMMENT: {
-      return {
-        ...state, posts: state.posts.map(post => {
-          post.comments.forEach(comment => {
-            if (comment.id === action.payload) comment.likes--;
-            else likeComment(comment.comments, action.payload);
-          });
-          return post;
-        })
-      }
+      return state;
     }
     default: return state;
   }
 }
 
-function likeComment(comments: CommentState[], id: string) {
-  return comments.map(comment => {
-    if (comment.id === id) comment.likes++;
-    likeComment(comment.comments, id);
-    return comment;
-  });
-}
-
-export { reducer as postsReducer };
+export { reducer as appReducer };
