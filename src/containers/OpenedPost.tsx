@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Header from '../components/header/Header';
 import Post from '../components/post/Post';
-import { PostsState, PostState } from '../store/posts/types';
+import { PostsState, PostState } from '../store/home/types';
 import { RouteComponentProps } from 'react-router';
 import { Dispatch } from 'redux';
-import { likePost, dislikePost } from '../store/posts/action';
+import { likePost, dislikePost } from '../store/home/action';
 import { connect } from 'react-redux';
 import styles from "./css/home.module.css";
 import { AppState } from '../store';

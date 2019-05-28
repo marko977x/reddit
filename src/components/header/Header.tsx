@@ -4,12 +4,24 @@ import redditIcon from "../../assets/reddit_icon.png";
 import searchIcon from "../../assets/search_icon.png";
 import accountIcon from "../../assets/account_icon.png";
 import styles from "./css/header.module.css";
+import Login from '../login/Login';
+import SignUp from '../signup/SignUp';
 
 interface IProps {
   isHomePage: boolean
 }
 
-class Header extends Component<IProps> {
+interface IState {
+  isLoginOpen: boolean,
+  isSignUpOpen: boolean
+}
+
+class Header extends Component<IProps, IState> {
+  readonly state = {
+    isLoginOpen: false,
+    isSignUpOpen: false
+  }
+
   render() {
     return (
       <div>
@@ -24,8 +36,8 @@ class Header extends Component<IProps> {
               <InputBase className={styles.searchInput} placeholder="Search…" />
             </div>
             <div className={this.props.isHomePage ? styles.signUp : styles.hidden}>
-              <Button className={styles.button} color="inherit" variant="outlined">Sign Up</Button>
-              <Button className={styles.button} variant="contained" >Login</Button>
+              <Button onClick={this.onSignUpClick} className={styles.button} color="inherit" variant="outlined">Sign Up</Button>
+              <Button onClick={this.onLoginClick} className={styles.button} variant="contained" >Login</Button>
             </div>
             <div className={this.props.isHomePage ? styles.hidden : styles.accountMenu}>
               <IconButton>
@@ -34,8 +46,26 @@ class Header extends Component<IProps> {
             </div>
           </Toolbar>
         </AppBar>
+        <Login onCancelClick={this.onLoginCancel} isOpen={this.state.isLoginOpen}></Login>
+        <SignUp onCancelClick={this.onSignUpCancel} isOpen={this.state.isSignUpOpen}></SignUp>
       </div>
     );
+  }
+
+  onLoginCancel = () => {
+    this.setState({ isLoginOpen: false });
+  }
+
+  onSignUpCancel = () => {
+    this.setState({ isSignUpOpen: false });
+  }
+
+  onLoginClick = () => {
+    this.setState({ isLoginOpen: true });
+  }
+
+  onSignUpClick = () => {
+    this.setState({ isSignUpOpen: true });
   }
 }
 

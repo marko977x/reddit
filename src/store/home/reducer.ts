@@ -24,10 +24,10 @@ const initialState: AppState = {
 
 const reducer: Reducer<AppState> = (state = initialState, action) => {
   switch (action.type) {
-    case PostsActionTypes.FETCH_POSTS: {
+    case PostsActionTypes.FETCH_APP_STATE: {
       return state;
     }
-    case PostsActionTypes.LOAD_POSTS: {
+    case PostsActionTypes.LOAD_APP_STATE: {
       return {
         ...state,
         posts: action.payload.posts,

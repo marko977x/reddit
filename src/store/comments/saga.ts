@@ -1,7 +1,7 @@
 import * as saga from "redux-saga/effects";
 import { CommentActionTypes } from "./types";
 import { apiFetch } from "../../services";
-import { ENTITIES_URL } from "../posts/saga";
+import { ENTITIES_URL } from "../home/saga";
 import { loadComments } from "./action";
 
 function* fetchComments() {

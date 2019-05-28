@@ -1,11 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { all, fork } from "@redux-saga/core/effects";
-import { appReducer } from "./posts/reducer";
+import { appReducer } from "./home/reducer";
 import { UserState } from "./user/types";
-import { PostState } from "./posts/types";
+import { PostState } from "./home/types";
 import { CommentState } from "./comments/types";
-import { postsSaga } from "./posts/saga";
+import { postsSaga } from "./home/saga";
 
 export interface NormalizedObjects<T> {
   byId: { [id: string]: T },

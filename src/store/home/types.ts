@@ -19,8 +19,8 @@ export interface PostState {
 }
 
 export enum PostsActionTypes {
-  FETCH_POSTS = "@@posts/FETCH_POSTS",
-  LOAD_POSTS = "@@posts/LOAD_POSTS",
+  FETCH_APP_STATE = "@@posts/FETCH_APP_STATE",
+  LOAD_APP_STATE = "@@posts/LOAD_APP_STATE",
   LIKE_POST = "@@posts/LIKE_POST",
   DISLIKE_POST = "@@posts/DISLIKE_POST"
 }

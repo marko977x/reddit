@@ -1,13 +1,13 @@
 import * as saga from "redux-saga/effects";
 import { PostsActionTypes } from "./types";
 import { apiFetch } from "../../services";
-import { loadPosts } from "./action";
+import { loadAppState } from "./action";
 
 export const ENTITIES_URL = "http://localhost:4000/entities/";
 
 function* handleFetchPosts() {
   const json = yield apiFetch('GET', ENTITIES_URL, "");
-  yield saga.put(loadPosts(json));
+  yield saga.put(loadAppState(json));
 }
 
 // export const getPost = (state: AppState, id: string): PostState => {
@@ -27,7 +27,7 @@ function* watchLikeRequests() {
 }
 
 function* watchGetRequest() {
-  yield saga.takeLatest(PostsActionTypes.FETCH_POSTS, handleFetchPosts);
+  yield saga.takeLatest(PostsActionTypes.FETCH_APP_STATE, handleFetchPosts);
 }
 
 export function* postsSaga() {

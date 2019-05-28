@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Header from '../components/header/Header';
 import Post from '../components/post/Post';
-import { fetchPosts, loadPosts, likePost, dislikePost } from '../store/posts/action';
-import { PostsState } from '../store/posts/types';
+import { fetchAppState, loadAppState, likePost, dislikePost } from '../store/home/action';
+import { PostsState } from '../store/home/types';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { AppState } from '../store';
@@ -14,8 +14,8 @@ interface PropsFromState {
 }
 
 interface PropsFromDispatch {
-  fetchPosts: typeof fetchPosts,
-  loadPosts: typeof loadPosts,
+  fetchAppState: typeof fetchAppState,
+  loadAppState: typeof loadAppState,
   likePost: typeof likePost,
   dislikePost: typeof dislikePost
 }
@@ -24,11 +24,10 @@ type allProps = PropsFromState & PropsFromDispatch;
 
 class Home extends Component<allProps> {
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchAppState();
   }
 
   render() {
-    console.log(this.props.appState);
     return (
       <div>
         <Header isHomePage={true}></Header>
@@ -58,8 +57,8 @@ const mapStateToProps = (rootReducer: any) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    fetchPosts: () => dispatch(fetchPosts()),
-    loadPosts: (postsState: PostsState) => dispatch(loadPosts(postsState)),
+    fetchAppState: () => dispatch(fetchAppState()),
+    loadAppState: (postsState: PostsState) => dispatch(loadAppState(postsState)),
     likePost: (postId: string) => dispatch(likePost(postId)),
     dislikePost: (postId: string) => dispatch(dislikePost(postId))
   }

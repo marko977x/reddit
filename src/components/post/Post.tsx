@@ -7,8 +7,8 @@ import PostContent from './PostContent';
 import { Redirect } from 'react-router-dom';
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
-import { likePost, dislikePost } from '../../store/posts/action';
-import { PostState } from '../../store/posts/types';
+import { likePost, dislikePost } from '../../store/home/action';
+import { PostState } from '../../store/home/types';
 import { UserState } from '../../store/user/types';
 import { connect } from 'react-redux';
 
@@ -73,7 +73,6 @@ class Post extends Component<IProps, IState> {
   }
 
   renderComments = () => {
-    console.log(this.props);
     return (this.props.postState.comments.map(comment => {
       return(
         <Comment 

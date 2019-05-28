@@ -39,7 +39,6 @@ class Comment extends Component<allProps, IState> {
   }
   
   render() {
-    console.log(this.props);
     const comment: CommentState = this.props.commentState;
     return (
       <div>
