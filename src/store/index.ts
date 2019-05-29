@@ -1,32 +1,22 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { all, fork } from "@redux-saga/core/effects";
-import { appReducer } from "./home/reducer";
-import { UserState } from "./user/types";
-import { PostState } from "./home/types";
-import { CommentState } from "./comments/types";
-import { postsSaga } from "./home/saga";
+import { commentReducer } from "./comment/reducer";
+import { userReducer } from "./user/reducer";
+import { postReducer } from "./post/reducer";
+import { uiReducer } from "./ui/reducer";
+import { uiSaga } from "./ui/saga";
 
 export interface NormalizedObjects<T> {
   byId: { [id: string]: T },
   allIds: string[]
 }
 
-export interface UiState {
-  shownPosts: string[],
-  openedPostId: string,
-  isOpenedSignlePost: boolean
-}
-
-export interface AppState {
-  posts: NormalizedObjects<PostState>,
-  comments: NormalizedObjects<CommentState>,
-  users: NormalizedObjects<UserState>,
-  ui: UiState
-}
-
 export const rootReducer = combineReducers({
-  app: appReducer
+  posts: postReducer,
+  comments: commentReducer,
+  users: userReducer,
+  ui: uiReducer
 });
 
 export default function configureStore() {
@@ -42,6 +32,6 @@ export default function configureStore() {
 
 export function* rootSaga() {
   yield all([
-    fork(postsSaga)
+    fork(uiSaga)
   ]);
 }

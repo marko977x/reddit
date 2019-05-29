@@ -1,44 +1,40 @@
 import React, { Component } from 'react';
 import Header from '../components/header/Header';
 import Post from '../components/post/Post';
-import { fetchAppState, loadAppState, likePost, dislikePost } from '../store/home/action';
-import { PostsState } from '../store/home/types';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { AppState } from '../store';
 import styles from "./css/home.module.css";
+import { UiState } from '../store/ui/types';
+import { NormalizedObjects } from '../store';
+import { PostState } from '../store/post/types';
+import { fetchData } from '../store/ui/action';
 
 interface PropsFromState {
-  appState: AppState,
-  isHomePage: boolean
+  ui: UiState,
+  posts: NormalizedObjects<PostState>
 }
 
 interface PropsFromDispatch {
-  fetchAppState: typeof fetchAppState,
-  loadAppState: typeof loadAppState,
-  likePost: typeof likePost,
-  dislikePost: typeof dislikePost
+  fetchData: typeof fetchData
 }
 
 type allProps = PropsFromState & PropsFromDispatch;
 
 class Home extends Component<allProps> {
   componentDidMount() {
-    this.props.fetchAppState();
+    this.props.fetchData();
   }
 
   render() {
     return (
       <div>
-        <Header isHomePage={true}></Header>
+        <Header isLoggedUser={this.props.ui.loggedUserId === "" ? false : true}></Header>
         <div className={styles.postsContainer}>
-          {this.props.appState.ui.shownPosts.map(post => {
+          {this.props.ui.shownPosts.map(post => {
             return (
-              <Post
-                likePost={this.props.likePost}
-                dislikePost={this.props.dislikePost}
-                isOpenedSinglePost={this.props.appState.ui.isOpenedSignlePost}
-                key={post} postState={this.props.appState.posts.byId[post]}>
+              <Post key={post}
+                isOpenedSinglePost={this.props.ui.isOpenedSinglePost}
+                postState={this.props.posts.byId[post]}>
               </Post>
             )
           })
@@ -51,16 +47,14 @@ class Home extends Component<allProps> {
 
 const mapStateToProps = (rootReducer: any) => {
   return {
-    appState: rootReducer.app 
+    ui: rootReducer.ui,
+    posts: rootReducer.posts
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    fetchAppState: () => dispatch(fetchAppState()),
-    loadAppState: (postsState: PostsState) => dispatch(loadAppState(postsState)),
-    likePost: (postId: string) => dispatch(likePost(postId)),
-    dislikePost: (postId: string) => dispatch(dislikePost(postId))
+    fetchData: () => dispatch(fetchData())
   }
 }
 

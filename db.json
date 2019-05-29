@@ -37,7 +37,10 @@
           "postId": "post1",
           "content": "Reply to myself",
           "likes": 2,
-          "comments": []
+          "comments": [
+            "comment2",
+            "comment3"
+          ]
         },
         "comment2": {
           "id": "comment2",
@@ -83,11 +86,6 @@
       "allIds": [
         "user1"
       ]
-    },
-    "ui": {
-      "shownPosts": [],
-      "isOpenedSinglePost": false,
-      "openedPostId": ""
     }
   }
 }

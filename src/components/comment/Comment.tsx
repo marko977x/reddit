@@ -5,25 +5,15 @@ import styles from "./css/comment.module.css";
 import expandIcon from "../../assets/expand_icon.png";
 import replyIcon from "../../assets/reply_icon.png";
 import CommentForm from '../commentForm/CommentForm';
-import { CommentsState, CommentState } from '../../store/comments/types';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { addComment, fetchComments, loadComments } from '../../store/comments/action';
 import { UserState } from '../../store/user/types';
+import { CommentState } from '../../store/comment/types';
+import { NormalizedObjects } from '../../store';
 
 interface PropsFromState {
   commentState: CommentState,
-  user: UserState,
-  postId: string,
-  parentCommentId: string,
-  id: string
+  users: NormalizedObjects<UserState>
 }
-
-// interface PropsFromDispatch {
-//   addComment: typeof addComment,
-//   fetchComments: typeof fetchComments,
-//   loadComments: typeof loadComments
-// }
 
 interface IState {
   expandComments: boolean,
@@ -40,12 +30,13 @@ class Comment extends Component<allProps, IState> {
   
   render() {
     const comment: CommentState = this.props.commentState;
+    const user: UserState = this.props.users.byId[comment.authorId];
     return (
       <div>
         <Card className={styles.comment}>
           <CardContent className={styles.content}>
             <Typography className={styles.caption} variant="caption">
-              Answer by {this.props.user.username}
+              Answer by {user.username}
             </Typography>
             <CardContent>
               <Typography variant="body1">{comment.content}</Typography>
@@ -73,15 +64,11 @@ class Comment extends Component<allProps, IState> {
           </CardActions>
           <Collapse in={this.state.expandComments} unmountOnExit>
             {comment.comments.map(comment => (
-              <Comment 
-                id={comment}
-                postId={""}
-                parentCommentId={this.props.id}
-                key={comment}
-                user={this.props.user}
-                commentState={this.props.commentState}>
-              </Comment>)
-            )}
+              <Comment key={comment}
+                commentState={this.props.commentState}
+                users={this.props.users}>
+              </Comment>
+            ))}
           </Collapse>
         </Card>
       </div>
@@ -91,16 +78,9 @@ class Comment extends Component<allProps, IState> {
 
 const mapStateToProps = (rootReducer: any, ownProps: any) => {
   return {
-    commentState: rootReducer.app.comments.byId[ownProps.id]
+    commentState: rootReducer.comments.byId[ownProps.id],
+    users: rootReducer.users
   }
 }
-
-// const mapDispatchToProps = (dispatch: Dispatch) => {
-//   return {
-//     addComment: () => dispatch(addComment()),
-//     fetchComments: () => dispatch(fetchComments()),
-//     loadComments: (commentsState: CommentsState) => dispatch(loadComments(commentsState))
-//   }
-// }
 
 export default connect(mapStateToProps)(Comment);

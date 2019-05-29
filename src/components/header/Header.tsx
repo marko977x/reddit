@@ -8,7 +8,7 @@ import Login from '../login/Login';
 import SignUp from '../signup/SignUp';
 
 interface IProps {
-  isHomePage: boolean
+  isLoggedUser: boolean
 }
 
 interface IState {
@@ -35,11 +35,11 @@ class Header extends Component<IProps, IState> {
               <Avatar className={styles.searchIcon} src={searchIcon}></Avatar>
               <InputBase className={styles.searchInput} placeholder="Search…" />
             </div>
-            <div className={this.props.isHomePage ? styles.signUp : styles.hidden}>
+            <div className={this.props.isLoggedUser ? styles.hidden : styles.signUp}>
               <Button onClick={this.onSignUpClick} className={styles.button} color="inherit" variant="outlined">Sign Up</Button>
               <Button onClick={this.onLoginClick} className={styles.button} variant="contained" >Login</Button>
             </div>
-            <div className={this.props.isHomePage ? styles.hidden : styles.accountMenu}>
+            <div className={this.props.isLoggedUser ? styles.accountMenu : styles.hidden}>
               <IconButton>
                 <Avatar className={styles.accountIcon} src={accountIcon}></Avatar>
               </IconButton>

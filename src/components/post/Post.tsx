@@ -7,24 +7,26 @@ import PostContent from './PostContent';
 import { Redirect } from 'react-router-dom';
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
-import { likePost, dislikePost } from '../../store/home/action';
-import { PostState } from '../../store/home/types';
-import { UserState } from '../../store/user/types';
 import { connect } from 'react-redux';
+import { PostState } from '../../store/post/types';
+import { UserState } from '../../store/user/types';
 
 interface IProps {
   postState: PostState,
-  isOpened: boolean,
-  likePost: typeof likePost,
-  dislikePost: typeof dislikePost,
-  user: UserState
+  isOpened: boolean
 }
 
 interface IState {
   redirect: boolean;
 }
 
-class Post extends Component<IProps, IState> {
+interface PropsFromState {
+  user: UserState
+}
+
+type allProps = IProps & PropsFromState;
+
+class Post extends Component<allProps, IState> {
   readonly state = {
     redirect: false
   }
@@ -93,7 +95,7 @@ class Post extends Component<IProps, IState> {
 
 const mapStateToProps = (rootReducer: any, ownProps: any) => {
   return {
-    user: rootReducer.app.users.byId[ownProps.postState.authorId]
+    user: rootReducer.users.byId[ownProps.postState.authorId]
   }
 }
 
