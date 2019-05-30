@@ -3,16 +3,25 @@ import { Reducer } from "redux";
 
 const initialState: UiState = {
   isOpenedSinglePost: false,
-  loggedUserId: "",
+  loggedUser: {
+    comments: [],
+    email: "",
+    id: "",
+    password: "",
+    posts: [],
+    username: ""
+  },
   openedPostId: "",
-  shownPosts: []
+  shownPosts: [],
+  isLoginDialogOpened: false,
+  isSignupDialogOpened: false
 }
 
 const reducer: Reducer<UiState> = (state = initialState, action) => {
   switch (action.type) {
     case UiActionTypes.SET_LOGGED_USER: {
       return {
-        ...state, loggedUserId: action.payload
+        ...state, loggedUser: action.payload
       }
     }
     case UiActionTypes.FETCH_DATA: { 
@@ -22,6 +31,18 @@ const reducer: Reducer<UiState> = (state = initialState, action) => {
       return {
         ...state, shownPosts: action.payload
       }
+    }
+    case UiActionTypes.OPEN_LOGIN_DIALOG: {
+      return {...state, isLoginDialogOpened: true}
+    }
+    case UiActionTypes.CLOSE_LOGIN_DIALOG: {
+      return {...state, isLoginDialogOpened: false}
+    }
+    case UiActionTypes.OPEN_SIGNUP_DIALOG: {
+      return {...state, isSignupDialogOpened: true}
+    }
+    case UiActionTypes.CLOSE_SIGNUP_DIALOG: {
+      return {...state, isSignupDialogOpened: false}
     }
     default: return state;
   }

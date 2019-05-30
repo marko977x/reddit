@@ -6,22 +6,22 @@ import accountIcon from "../../assets/account_icon.png";
 import styles from "./css/header.module.css";
 import Login from '../login/Login';
 import SignUp from '../signup/SignUp';
+import { openSignupDialog, openLoginDialog } from '../../store/ui/action';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
 interface IProps {
   isLoggedUser: boolean
 }
 
-interface IState {
-  isLoginOpen: boolean,
-  isSignUpOpen: boolean
+interface propsFromDispatch {
+  openLoginDialog: typeof openLoginDialog,
+  openSignupDialog: typeof openSignupDialog
 }
 
-class Header extends Component<IProps, IState> {
-  readonly state = {
-    isLoginOpen: false,
-    isSignUpOpen: false
-  }
+type allProps = IProps & propsFromDispatch;
 
+class Header extends Component<allProps> {
   render() {
     return (
       <div>
@@ -36,8 +36,8 @@ class Header extends Component<IProps, IState> {
               <InputBase className={styles.searchInput} placeholder="Search…" />
             </div>
             <div className={this.props.isLoggedUser ? styles.hidden : styles.signUp}>
-              <Button onClick={this.openSignUpDialog} className={styles.button} color="inherit" variant="outlined">Sign Up</Button>
-              <Button onClick={this.openLoginDialog} className={styles.button} variant="contained" >Login</Button>
+              <Button onClick={this.props.openSignupDialog} className={styles.button} color="inherit" variant="outlined">Sign Up</Button>
+              <Button onClick={this.props.openLoginDialog} className={styles.button} variant="contained" >Login</Button>
             </div>
             <div className={this.props.isLoggedUser ? styles.accountMenu : styles.hidden}>
               <IconButton>
@@ -46,27 +46,18 @@ class Header extends Component<IProps, IState> {
             </div>
           </Toolbar>
         </AppBar>
-        <Login closeDialog={this.closeLoginDialog} isOpen={this.state.isLoginOpen}></Login>
-        <SignUp closeDialog={this.closeSignUpDialog} isOpen={this.state.isSignUpOpen}></SignUp>
+        <Login></Login>
+        <SignUp></SignUp>
       </div>
     );
   }
+}
 
-  closeLoginDialog = () => {
-    this.setState({ isLoginOpen: false });
-  }
-
-  closeSignUpDialog = () => {
-    this.setState({ isSignUpOpen: false });
-  }
-
-  openLoginDialog = () => {
-    this.setState({ isLoginOpen: true });
-  }
-
-  openSignUpDialog = () => {
-    this.setState({ isSignUpOpen: true });
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    openLoginDialog: () => dispatch(openLoginDialog()),
+    openSignupDialog: () => dispatch(openSignupDialog())
   }
 }
 
-export default Header;
+export default connect(null, mapDispatchToProps)(Header);

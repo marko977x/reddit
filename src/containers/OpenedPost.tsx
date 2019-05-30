@@ -28,7 +28,7 @@ class OpenedPost extends Component<allProps, IState> {
   render() {
     return (
       <div>
-        <Header isLoggedUser={this.props.ui.loggedUserId === "" ? false : true}></Header>
+        <Header isLoggedUser={this.props.ui.loggedUser.id === "" ? false : true}></Header>
         <div className={styles.postsContainer}>
           <Post isOpened={true}
             postState={this.props.posts.byId[this.props.match.params.id]}>

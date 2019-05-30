@@ -9,5 +9,6 @@ export interface PostState {
 
 export enum PostActionTypes {
   LOAD_POSTS = "post/LOAD_POSTS",
-  ADD_POST = "post/ADD_POST"
+  ADD_POST = "post/ADD_POST",
+  ADD_COMMENT_TO_POST = "post/ADD_COMMENT_TO_POST"
 }

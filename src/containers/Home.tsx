@@ -28,7 +28,7 @@ class Home extends Component<allProps> {
   render() {
     return (
       <div>
-        <Header isLoggedUser={this.props.ui.loggedUserId === "" ? false : true}></Header>
+        <Header isLoggedUser={this.props.ui.loggedUser.id === "" ? false : true}></Header>
         <div className={styles.postsContainer}>
           {this.props.ui.shownPosts.map(post => {
             return (

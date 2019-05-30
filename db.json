@@ -4,9 +4,9 @@
       "byId": {
         "post1": {
           "id": "post1",
-          "authorId": "user1",
+          "authorId": "marko977xID",
           "topic": "Topic",
-          "content": "Content of post",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
           "likes": 1,
           "comments": [
             "comment1",
@@ -15,9 +15,9 @@
         },
         "post2": {
           "id": "post2",
-          "authorId": "user1",
+          "authorId": "marko977xID",
           "topic": "Topic",
-          "content": "Content of post",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
           "likes": 1,
           "comments": [
             "comment3"
@@ -33,25 +33,28 @@
       "byId": {
         "comment1": {
           "id": "comment1",
-          "authorId": "user1",
+          "authorId": "marko977xID",
           "postId": "post1",
-          "content": "Reply to myself",
+          "parentCommentId": "",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
           "likes": 2,
           "comments": []
         },
         "comment2": {
           "id": "comment2",
-          "authorId": "user1",
+          "authorId": "marko977xID",
           "postId": "post1",
-          "content": "Reply to myself",
+          "parentCommentId": "",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
           "likes": 2,
           "comments": []
         },
         "comment3": {
           "id": "comment3",
-          "authorId": "user1",
+          "authorId": "marko977xID",
           "postId": "post2",
-          "content": "Reply to myself",
+          "parentCommentId": "",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
           "likes": 2,
           "comments": []
         }
@@ -64,7 +67,7 @@
     },
     "users": {
       "byId": {
-        "user1": {
+        "marko977xID": {
           "id": "marko977xID",
           "username": "marko977x",
           "email": "marko977x@gmail.com",
@@ -81,7 +84,7 @@
         }
       },
       "allIds": [
-        "user1"
+        "marko977xID"
       ]
     }
   }

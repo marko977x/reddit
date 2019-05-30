@@ -69,21 +69,21 @@ class Post extends Component<allProps, IState> {
         <CardContent>
           <PostContent content={this.props.postState.content}></PostContent>
         </CardContent>
-        {this.props.isOpened ? <CommentForm></CommentForm> : ""}
+        {this.props.isOpened ? 
+          (<CommentForm 
+            isParentComponentPost={true} 
+            parentComponentId={this.props.postState.id}>
+          </CommentForm>
+          ) : ""}
       </CardContent>
     );
   }
 
   renderComments = () => {
+    console.log(this.props.postState.comments);
     return (this.props.postState.comments.map(comment => {
       return(
-        <Comment 
-          id={comment} 
-          postId={this.props.postState.id} 
-          parentCommentId={""} 
-          key={comment}
-          user={this.props.user}>
-        </Comment>
+        <Comment id={comment} key={comment}></Comment>
       );
     }));
   }

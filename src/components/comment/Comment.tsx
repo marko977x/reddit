@@ -15,12 +15,16 @@ interface PropsFromState {
   users: NormalizedObjects<UserState>
 }
 
+interface IProps {
+  id: string
+}
+
 interface IState {
   expandComments: boolean,
   expandCommentForm: boolean
 }
 
-type allProps = PropsFromState;
+type allProps = PropsFromState & IProps;
 
 class Comment extends Component<allProps, IState> {
   readonly state = {
@@ -42,13 +46,17 @@ class Comment extends Component<allProps, IState> {
               <Typography variant="body1">{comment.content}</Typography>
             </CardContent>
             <Collapse in={this.state.expandCommentForm}>
-              <CommentForm></CommentForm>
+              <CommentForm 
+                isParentComponentPost={false} 
+                parentComponentId={this.props.commentState.id}>
+              </CommentForm>
             </Collapse>
           </CardContent>
           <CardActions className={styles.commentSidebar}>
             <Likes 
               likes={comment.likes} 
-              IsInCommentSection={true}></Likes>
+              IsInCommentSection={true}>
+            </Likes>
             <IconButton
               className={styles.expandButton}
               aria-expanded={false}
@@ -64,10 +72,7 @@ class Comment extends Component<allProps, IState> {
           </CardActions>
           <Collapse in={this.state.expandComments} unmountOnExit>
             {comment.comments.map(comment => (
-              <Comment key={comment}
-                commentState={this.props.commentState}
-                users={this.props.users}>
-              </Comment>
+              <ConnectedComment key={comment} id={comment}></ConnectedComment>
             ))}
           </Collapse>
         </Card>
@@ -83,4 +88,6 @@ const mapStateToProps = (rootReducer: any, ownProps: any) => {
   }
 }
 
-export default connect(mapStateToProps)(Comment);
+const ConnectedComment = connect(mapStateToProps)(Comment);
+
+export default ConnectedComment;

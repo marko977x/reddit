@@ -7,23 +7,19 @@ import { connect } from 'react-redux';
 import { UiState } from '../../store/ui/types';
 import { signUp } from '../../store/user/action';
 import { Dispatch } from 'redux';
-import { setLoggedUser } from '../../store/ui/action';
+import { setLoggedUser, closeSignupDialog } from '../../store/ui/action';
 import shortid from "shortid";
 import { validateEmail, validatePassword, validateUsername } from '../../services/auth';
 
 interface propsFromState {
   users: NormalizedObjects<UserState>,
-  ui: NormalizedObjects<UiState>
-}
-
-interface IProps {
-  isOpen: boolean,
-  closeDialog: () => void
+  ui: UiState
 }
 
 interface propsFromDispatch {
   signUp: typeof signUp,
-  setLoggedUser: typeof setLoggedUser
+  setLoggedUser: typeof setLoggedUser,
+  closeDialog: typeof closeSignupDialog
 }
 
 interface IState {
@@ -35,7 +31,7 @@ interface IState {
   passwordError: Error
 }
 
-type allProps = IProps & propsFromState & propsFromDispatch;
+type allProps = propsFromState & propsFromDispatch;
 
 class SignUp extends Component<allProps, IState> {
   readonly state = {
@@ -58,7 +54,7 @@ class SignUp extends Component<allProps, IState> {
   render() {
     return (
       <div>
-        <Dialog open={this.props.isOpen}>
+        <Dialog open={this.props.ui.isSignupDialogOpened}>
           <DialogTitle>Sign Up</DialogTitle>
           <DialogContent className={style.dialogContent}>
             <TextField 
@@ -100,7 +96,7 @@ class SignUp extends Component<allProps, IState> {
     if(this.checkCredentials()) {
       const userId = shortid.generate();
       this.props.signUp({...this.state, id: userId});
-      this.props.setLoggedUser(userId);
+      this.props.setLoggedUser({...this.state, id:userId, comments:[], posts:[]});
       this.props.closeDialog();
     }
   }
@@ -157,7 +153,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     signUp: (userData: {username: string, email: string, password: string, id: string}) =>
       dispatch(signUp(userData)),
-    setLoggedUser: (userId: string) => dispatch(setLoggedUser(userId))
+    setLoggedUser: (user: UserState) => dispatch(setLoggedUser(user)),
+    closeDialog: () => dispatch(closeSignupDialog())
   }
 }
 

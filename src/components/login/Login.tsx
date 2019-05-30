@@ -3,13 +3,8 @@ import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button } 
 import { Error, UserState } from '../../store/user/types';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { setLoggedUser } from '../../store/ui/action';
+import { setLoggedUser, closeLoginDialog } from '../../store/ui/action';
 import { NormalizedObjects } from '../../store';
-
-interface IProps {
-  isOpen: boolean,
-  closeDialog: () => void
-}
 
 interface IState {
   email: string,
@@ -19,14 +14,16 @@ interface IState {
 }
 
 interface propsFromState {
-  users: NormalizedObjects<UserState>
+  users: NormalizedObjects<UserState>,
+  isOpen: boolean
 }
 
 interface propsFromDispatch {
-  setLoggedUser: typeof setLoggedUser
+  setLoggedUser: typeof setLoggedUser,
+  closeDialog: typeof closeLoginDialog
 }
 
-type allProps = IProps & propsFromDispatch & propsFromState;
+type allProps = propsFromDispatch & propsFromState;
 
 class Login extends Component<allProps, IState> {
   readonly state = {
@@ -69,42 +66,40 @@ class Login extends Component<allProps, IState> {
   }
 
   onSubmitClick = () => {
-    let result: string = this.getUserId();
-    console.log(result);
-    if(result !== "") {
+    let result: UserState | null = this.getUserByEmail();
+    if(result && result.password === this.state.password) {
       this.props.setLoggedUser(result);
       this.props.closeDialog();
+      return;
     }
+    this.setState({passwordError: {error: true, errorText: "Invalid password"}});
   }
 
-  getUserId = (): string => {
+  getUserByEmail = (): UserState | null => {
     const users = this.props.users;
-    let result = "";
     for(let index = 0; index < users.allIds.length; index++) {
       const id = users.allIds[index];
       if (users.byId[id].email === this.state.email){
         this.setState({emailError: {error: false, errorText: ""}});
-        if (users.byId[id].password !== this.state.password){
-          this.setState({passwordError: {error: true, errorText: "Invalid password"}});
-          return "";
-        } 
-        else return id;
+        return users.byId[id];
       }
     };
     this.setState({emailError: {error: true, errorText: "Invalid email"}});
-    return result;
+    return null;
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    setLoggedUser: (id: string) => dispatch(setLoggedUser(id))
+    setLoggedUser: (user: UserState) => dispatch(setLoggedUser(user)),
+    closeDialog: () => dispatch(closeLoginDialog())
   }
 }
 
 const mapStateToProps = (rootReducer: any) => {
   return {
-    users: rootReducer.users
+    users: rootReducer.users,
+    isOpen: rootReducer.ui.isLoginDialogOpened
   }
 }
 
