@@ -5,19 +5,18 @@
 
 .redditLogo {
   display: flex;
-  flex: 1;
+  flex: 2;
 }
 
 .redditIcon {
   margin-right: 10px;
 }
 
-.searchArea {
-  background-color: white;
-  border-radius: 5px;
+/* .searchArea {
   display: flex;
   flex: 1;
-}
+  width: 150px;
+} */
 
 .searchInput {
   width:100%;
@@ -29,7 +28,7 @@
 }
 
 .signUp {
-  flex: 1;
+  flex: 2;
   display: flex;
   justify-content: flex-end;
 }

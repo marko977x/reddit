@@ -1,0 +1,17 @@
+.cardContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20px;
+}
+
+.submitButton {
+  display: flex;
+  justify-content: flex-end;
+}
