@@ -7,9 +7,12 @@ export interface UserState {
   comments: string[]
 }
 
+export interface Error { 
+  error: boolean,
+  errorText: string
+}
+
 export enum UserActionTypes {
   LOAD_USERS = "user/LOAD_USERS", 
-  LOGIN = "user/LOGIN",
-  SIGN_UP = "user/SIGN_UP",
-  LOGOUT = "user/LOGOUT"
+  SIGN_UP = "user/SIGN_UP"
 }

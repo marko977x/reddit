@@ -37,10 +37,7 @@
           "postId": "post1",
           "content": "Reply to myself",
           "likes": 2,
-          "comments": [
-            "comment2",
-            "comment3"
-          ]
+          "comments": []
         },
         "comment2": {
           "id": "comment2",
@@ -68,10 +65,10 @@
     "users": {
       "byId": {
         "user1": {
-          "id": "user1",
-          "username": "username1",
-          "email": "usernam@email.com",
-          "password": "password",
+          "id": "marko977xID",
+          "username": "marko977x",
+          "email": "marko977x@gmail.com",
+          "password": "marko977x",
           "posts": [
             "post1",
             "post2"

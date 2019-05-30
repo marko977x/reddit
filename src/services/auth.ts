@@ -1,3 +1,6 @@
+const MINIMUM_PASSWORD_LENGTH = 6;
+const MINIMUM_USERNAME_LENGTH = 6;
+
 export function* apiFetch(method: string, url: string, data: any) {
   let postParams: RequestInit = {
     body: JSON.stringify(data),
@@ -20,4 +23,17 @@ export function* apiFetch(method: string, url: string, data: any) {
   
   if (result.ok) return yield result.json();
   else return result.status.toString();
+}
+
+export function validateEmail(email: string): boolean {
+  const regexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return regexp.test(email);
+}
+
+export function validatePassword(password: string): boolean {
+  return password.length >= MINIMUM_PASSWORD_LENGTH;
+}
+
+export function validateUsername(username: string): boolean {
+  return username.length >= MINIMUM_USERNAME_LENGTH;
 }

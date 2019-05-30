@@ -11,7 +11,9 @@ const initialState: UiState = {
 const reducer: Reducer<UiState> = (state = initialState, action) => {
   switch (action.type) {
     case UiActionTypes.SET_LOGGED_USER: {
-      return state;
+      return {
+        ...state, loggedUserId: action.payload
+      }
     }
     case UiActionTypes.FETCH_DATA: { 
       return state; 

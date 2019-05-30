@@ -1,6 +1,6 @@
 import * as saga from "redux-saga/effects";
 import { UiActionTypes } from "./types";
-import { apiFetch } from "../../services";
+import { apiFetch } from "../../services/auth";
 import { loadPosts } from "../post/action";
 import { setShownPosts } from "./action";
 import { loadComments } from "../comment/action";

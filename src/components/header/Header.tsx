@@ -36,8 +36,8 @@ class Header extends Component<IProps, IState> {
               <InputBase className={styles.searchInput} placeholder="Search…" />
             </div>
             <div className={this.props.isLoggedUser ? styles.hidden : styles.signUp}>
-              <Button onClick={this.onSignUpClick} className={styles.button} color="inherit" variant="outlined">Sign Up</Button>
-              <Button onClick={this.onLoginClick} className={styles.button} variant="contained" >Login</Button>
+              <Button onClick={this.openSignUpDialog} className={styles.button} color="inherit" variant="outlined">Sign Up</Button>
+              <Button onClick={this.openLoginDialog} className={styles.button} variant="contained" >Login</Button>
             </div>
             <div className={this.props.isLoggedUser ? styles.accountMenu : styles.hidden}>
               <IconButton>
@@ -46,25 +46,25 @@ class Header extends Component<IProps, IState> {
             </div>
           </Toolbar>
         </AppBar>
-        <Login onCancelClick={this.onLoginCancel} isOpen={this.state.isLoginOpen}></Login>
-        <SignUp onCancelClick={this.onSignUpCancel} isOpen={this.state.isSignUpOpen}></SignUp>
+        <Login closeDialog={this.closeLoginDialog} isOpen={this.state.isLoginOpen}></Login>
+        <SignUp closeDialog={this.closeSignUpDialog} isOpen={this.state.isSignUpOpen}></SignUp>
       </div>
     );
   }
 
-  onLoginCancel = () => {
+  closeLoginDialog = () => {
     this.setState({ isLoginOpen: false });
   }
 
-  onSignUpCancel = () => {
+  closeSignUpDialog = () => {
     this.setState({ isSignUpOpen: false });
   }
 
-  onLoginClick = () => {
+  openLoginDialog = () => {
     this.setState({ isLoginOpen: true });
   }
 
-  onSignUpClick = () => {
+  openSignUpDialog = () => {
     this.setState({ isSignUpOpen: true });
   }
 }
