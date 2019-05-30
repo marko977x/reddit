@@ -24,6 +24,19 @@ const reducer: Reducer<UiState> = (state = initialState, action) => {
         ...state, loggedUser: action.payload
       }
     }
+    case UiActionTypes.LOGOUT_USER: {
+      return {
+        ...state,
+        loggedUser: {
+          comments: [],
+          posts: [],
+          email: "",
+          id: "",
+          password: "",
+          username: ""
+        }
+      }
+    }
     case UiActionTypes.FETCH_DATA: { 
       return state; 
     }

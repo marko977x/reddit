@@ -70,6 +70,7 @@ class Login extends Component<allProps, IState> {
     if(result && result.password === this.state.password) {
       this.props.setLoggedUser(result);
       this.props.closeDialog();
+      this.setState({email: "", password: ""});
       return;
     }
     this.setState({passwordError: {error: true, errorText: "Invalid password"}});

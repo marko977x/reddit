@@ -9,7 +9,7 @@ class PostContent extends Component<IProps> {
   render() {
     return (
       <div>
-        <Typography align="left" variant="h5">{this.props.content}</Typography>
+        <Typography align="left" variant="h6">{this.props.content}</Typography>
       </div>
     );
   }

@@ -5,6 +5,8 @@ import { UserState } from "../user/types";
 export const setLoggedUser = (user: UserState) =>
   action(UiActionTypes.SET_LOGGED_USER, user);
 
+export const logoutUser = () => action(UiActionTypes.LOGOUT_USER);
+
 export const fetchData = () => action(UiActionTypes.FETCH_DATA);
 
 export const setShownPosts = (postsIds: string[]) =>
