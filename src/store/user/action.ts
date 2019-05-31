@@ -1,9 +1,9 @@
 import { action } from "typesafe-actions";
-import { UserActionTypes, UserState } from "./types";
+import { UserActionTypes, UserState, SignUpData } from "./types";
 import { NormalizedObjects } from "..";
 
-export const signUp = (userData: { username: string, email: string, password: string, id:string }) =>
-  action(UserActionTypes.SIGN_UP, userData);
+export const signUp = (signUpData: SignUpData) =>
+  action(UserActionTypes.SIGN_UP, signUpData);
 
 export const loadUsers = (users: NormalizedObjects<UserState>) =>
   action(UserActionTypes.LOAD_USERS, users);

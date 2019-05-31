@@ -5,7 +5,7 @@ import { UiState } from '../../store/ui/types';
 import { connect } from 'react-redux';
 import { openLoginDialog } from '../../store/ui/action';
 import { Dispatch } from 'redux';
-import { createComment, addCommentToComment } from '../../store/comment/action';
+import { replyToComment } from '../../store/comment/action';
 import { CommentState } from '../../store/comment/types';
 import shortid from "shortid";
 import { addCommentToPost } from '../../store/post/action';
@@ -21,9 +21,8 @@ interface propsFromState {
 
 interface propsFromDispatch {
   openLoginDialog: typeof openLoginDialog,
-  createComment: typeof createComment,
   addCommentToPost: typeof addCommentToPost,
-  addCommentToComment: typeof addCommentToComment
+  replyToComment: typeof replyToComment
 }
 
 interface IState {
@@ -67,12 +66,9 @@ class CommentForm extends Component<allProps, IState> {
         parentCommentId: this.props.isParentComponentPost ? null : this.props.parentComponentId,
         postId: this.props.isParentComponentPost ? this.props.parentComponentId : null
       }
-      this.props.createComment(comment);
       this.props.isParentComponentPost ? 
-        this.props.addCommentToPost(comment) :
-        this.props.addCommentToComment(this.props.parentComponentId, comment.id);
-      console.log(comment);
-      console.log(this.props.parentComponentId);
+        this.props.addCommentToPost(comment) : 
+        this.props.replyToComment(comment);
       this.setState({content: ""});
     }
   }
@@ -84,7 +80,6 @@ class CommentForm extends Component<allProps, IState> {
 
 
 const mapStateToProps = (rootReducer: any) => {
-  console.log(rootReducer);
   return {
     ui: rootReducer.ui
   }
@@ -93,10 +88,8 @@ const mapStateToProps = (rootReducer: any) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     openLoginDialog: () => dispatch(openLoginDialog()),
-    createComment: (comment: CommentState) => dispatch(createComment(comment)),
     addCommentToPost: (comment: CommentState) => dispatch(addCommentToPost(comment)),
-    addCommentToComment: (parentCommentId: string, id: string) => 
-      dispatch(addCommentToComment(parentCommentId, id))
+    replyToComment: (comment: CommentState) => dispatch(replyToComment(comment))
   }
 }
 

@@ -80,7 +80,6 @@ class Post extends Component<allProps, IState> {
   }
 
   renderComments = () => {
-    console.log(this.props.postState.comments);
     return (this.props.postState.comments.map(comment => {
       return(
         <Comment id={comment} key={comment}></Comment>
@@ -94,7 +93,6 @@ class Post extends Component<allProps, IState> {
 }
 
 const mapStateToProps = (rootReducer: any, ownProps: any) => {
-  console.log(ownProps);
   return {
     user: rootReducer.users.byId[ownProps.postState.authorId]
   }

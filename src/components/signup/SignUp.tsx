@@ -2,14 +2,14 @@ import React, { Component, ChangeEvent } from 'react';
 import { Dialog, DialogTitle, DialogContent, TextField, Button, DialogActions } from '@material-ui/core';
 import style from "./css/signUp.module.css";
 import { NormalizedObjects } from '../../store';
-import { UserState, Error } from '../../store/user/types';
+import { UserState, Error, SignUpData } from '../../store/user/types';
 import { connect } from 'react-redux';
 import { UiState } from '../../store/ui/types';
-import { signUp } from '../../store/user/action';
 import { Dispatch } from 'redux';
 import { setLoggedUser, closeSignupDialog } from '../../store/ui/action';
 import shortid from "shortid";
 import { validateEmail, validatePassword, validateUsername } from '../../services/auth';
+import { signUp } from '../../store/user/action';
 
 interface propsFromState {
   users: NormalizedObjects<UserState>,
@@ -95,7 +95,12 @@ class SignUp extends Component<allProps, IState> {
   onSubmitClick = () => {
     if(this.checkCredentials()) {
       const userId = shortid.generate();
-      this.props.signUp({...this.state, id: userId});
+      this.props.signUp({
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password,
+        id: userId
+      });
       this.props.setLoggedUser({...this.state, id:userId, comments:[], posts:[]});
       this.props.closeDialog();
       this.setState({email: "", password: "", username: ""});
@@ -152,8 +157,7 @@ const mapStateToProps = (rootReducer: any) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    signUp: (userData: {username: string, email: string, password: string, id: string}) =>
-      dispatch(signUp(userData)),
+    signUp: (userData: SignUpData) => dispatch(signUp(userData)),
     setLoggedUser: (user: UserState) => dispatch(setLoggedUser(user)),
     closeDialog: () => dispatch(closeSignupDialog())
   }

@@ -8,7 +8,9 @@
       "likes": 1,
       "comments": [
         "comment1",
-        "comment2"
+        "comment2",
+        "fmkGe-HH3",
+        "1QM5uSoe4"
       ]
     },
     {
@@ -18,7 +20,8 @@
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
       "likes": 1,
       "comments": [
-        "comment3"
+        "comment3",
+        "LChQjDgV5"
       ]
     }
   ],
@@ -30,7 +33,9 @@
       "parentCommentId": "",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
       "likes": 2,
-      "comments": []
+      "comments": [
+        "FAM2vr8Ak"
+      ]
     },
     {
       "id": "comment2",
@@ -48,7 +53,65 @@
       "parentCommentId": "",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
       "likes": 2,
-      "comments": []
+      "comments": [
+        "gWXUzMus4"
+      ]
+    },
+    {
+      "authorId": "62Wv5g3xs",
+      "comments": [],
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
+      "id": "fmkGe-HH3",
+      "likes": 0,
+      "parentCommentId": null,
+      "postId": "post1"
+    },
+    {
+      "authorId": "62Wv5g3xs",
+      "comments": [],
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
+      "id": "1QM5uSoe4",
+      "likes": 0,
+      "parentCommentId": null,
+      "postId": "post1"
+    },
+    {
+      "authorId": "62Wv5g3xs",
+      "comments": [
+        "ylBeDV_54"
+      ],
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
+      "id": "FAM2vr8Ak",
+      "likes": 0,
+      "parentCommentId": "comment1",
+      "postId": null
+    },
+    {
+      "authorId": "62Wv5g3xs",
+      "comments": [],
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
+      "id": "ylBeDV_54",
+      "likes": 0,
+      "parentCommentId": "FAM2vr8Ak",
+      "postId": null
+    },
+    {
+      "authorId": "62Wv5g3xs",
+      "comments": [],
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
+      "id": "gWXUzMus4",
+      "likes": 0,
+      "parentCommentId": "comment3",
+      "postId": null
+    },
+    {
+      "authorId": "62Wv5g3xs",
+      "comments": [],
+      "content": "const parentComment = yield apiFetch(\n    'GET', COMMENTS_RESOURCE_URL + action.payload.parentCommentId, \"\");\n  parentComment.comments.push(action.payload.id);\n  yield apiFetch('PUT', COMMENTS_RESOURCE_URL + parentComment.id, parentComment);",
+      "id": "LChQjDgV5",
+      "likes": 0,
+      "parentCommentId": null,
+      "postId": "post2"
     }
   ],
   "users": [
@@ -66,6 +129,22 @@
         "comment2",
         "comment3"
       ]
+    },
+    {
+      "username": "marko977x",
+      "email": "marko@gmail.com",
+      "password": "marko977x",
+      "id": "4bMOiXO0d",
+      "comments": [],
+      "posts": []
+    },
+    {
+      "username": "marko97x",
+      "email": "marko97x@gmail.com",
+      "password": "marko97x",
+      "id": "62Wv5g3xs",
+      "comments": [],
+      "posts": []
     }
   ],
   "topics": [

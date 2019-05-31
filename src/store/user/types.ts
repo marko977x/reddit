@@ -7,12 +7,19 @@ export interface UserState {
   comments: string[]
 }
 
-export interface Error { 
+export interface Error {
   error: boolean,
   errorText: string
 }
 
+export interface SignUpData {
+  username: string,
+  email: string,
+  password: string,
+  id: string
+}
+
 export enum UserActionTypes {
-  LOAD_USERS = "user/LOAD_USERS", 
+  LOAD_USERS = "user/LOAD_USERS",
   SIGN_UP = "user/SIGN_UP"
 }

@@ -30,7 +30,6 @@ function normalize(json: any): any {
     result.byId[element.id] = element;
     result.allIds[index] = element.id;
   });
-  console.log(result);
   return result;
 }
 

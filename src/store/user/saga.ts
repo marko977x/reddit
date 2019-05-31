@@ -1,9 +1,15 @@
 import * as saga from "redux-saga/effects";
-import { UserActionTypes } from "./types";
+import { UserActionTypes, SignUpData, UserState } from "./types";
+import { apiFetch } from "../../services/auth";
+import { DATABASE_URL } from "../ui/saga";
 
-function* addUser(userData: any) {
-  console.log(userData);
-  yield null;
+function* addUser(action: any) {
+  let user: UserState = {
+    ...action.payload,
+    comments: [],
+    posts: []
+  }
+  yield apiFetch('POST', DATABASE_URL + "users", user);
 }
 
 function* watchRequests() {

@@ -1,4 +1,4 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
+import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { all } from "@redux-saga/core/effects";
 import { commentReducer } from "./comment/reducer";
@@ -7,6 +7,8 @@ import { postReducer } from "./post/reducer";
 import { uiReducer } from "./ui/reducer";
 import { uiSaga } from "./ui/saga";
 import { userSaga } from "./user/saga";
+import { postSaga } from "./post/saga";
+import { commentsSaga } from "./comment/saga";
 
 export interface NormalizedObjects<T> {
   byId: { [id: string]: T },
@@ -33,6 +35,9 @@ export default function configureStore() {
 
 export function* rootSaga() {
   yield all([
-    uiSaga(), userSaga()
+    uiSaga(),
+    userSaga(),
+    postSaga(),
+    commentsSaga()
   ]);
 }

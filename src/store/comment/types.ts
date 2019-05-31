@@ -8,8 +8,12 @@ export interface CommentState {
   comments: string[]
 }
 
+export interface ReplyToCommentData {
+  id: string,
+  parentCommentId: string
+}
+
 export enum CommentActionTypes {
   LOAD_COMMENTS = "comment/LOAD_COMMENTS",
-  CREATE_COMMENT = "comment/CREATE_COMMENT",
-  ADD_COMMENT_TO_COMMENT = "comment/ADD_COMMENT_TO_COMMENT"
+  REPLY_TO_COMMENT = "comment/REPLY_TO_COMMENT"
 }
