@@ -33,7 +33,7 @@ class Home extends Component<allProps> {
           {this.props.ui.shownPosts.map(post => {
             return (
               <Post key={post}
-                isOpenedSinglePost={this.props.ui.isOpenedSinglePost}
+                isOpened={this.props.ui.isOpenedSinglePost}
                 postState={this.props.posts.byId[post]}>
               </Post>
             )

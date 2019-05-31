@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { AppBar, Toolbar, Typography, Avatar, IconButton } from '@material-ui/core';
 import redditIcon from "../../assets/reddit_icon.png";
 import logoutIcon from "../../assets/logout_icon.png";
-import newIcon from "../../assets/new_icon.png";
 import styles from "./css/header.module.css";
 import Login from '../login/Login';
 import SignUp from '../signup/SignUp';
@@ -11,6 +10,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
+import { Redirect } from 'react-router';
 
 interface IProps {
   isLoggedUser: boolean
@@ -22,18 +22,19 @@ interface propsFromDispatch {
   logoutUser: typeof logoutUser
 }
 
-type allProps = IProps & propsFromDispatch;
-
 interface IState {
-  anchorEl: any
+  redirect: boolean
 }
+
+type allProps = IProps & propsFromDispatch;
 
 class Header extends Component<allProps, IState> {
   readonly state = {
-    anchorEl: undefined
+    redirect: false
   }
 
   render() {
+    if(this.state.redirect) return <Redirect to={"/newPost"}></Redirect>
     return (
       <div>
         <AppBar position="static">
@@ -42,8 +43,8 @@ class Header extends Component<allProps, IState> {
               <Avatar className={styles.redditIcon} src={redditIcon} ></Avatar>
               <Typography className={styles.redditTypography} variant="h6" color="inherit" noWrap>Reddit</Typography>
             </div>
-            <div className={styles.searchArea}>
-              <Button className={styles.newPostButton} variant={"contained"} color={"secondary"}>
+            <div className={styles.newPostButtonContainer}>
+              <Button onClick={this.onNewPostClick} className={styles.newPostButton} variant={"contained"} color={"secondary"}>
                 <AddIcon />
                 <Typography variant={"button"}>Add New Post</Typography>
               </Button>
@@ -63,6 +64,10 @@ class Header extends Component<allProps, IState> {
         <SignUp></SignUp>
       </div>
     );
+  }
+
+  onNewPostClick = () => {
+    this.setState({redirect: true});
   }
 }
 

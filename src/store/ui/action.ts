@@ -12,6 +12,9 @@ export const fetchData = () => action(UiActionTypes.FETCH_DATA);
 export const setShownPosts = (postsIds: string[]) =>
   action(UiActionTypes.SET_SHOWN_POSTS, postsIds);
 
+export const setTopics = (topics: string[]) =>
+  action(UiActionTypes.SET_TOPICS, topics);
+
 export const openLoginDialog = () => action(UiActionTypes.OPEN_LOGIN_DIALOG);
 export const closeLoginDialog = () => action(UiActionTypes.CLOSE_LOGIN_DIALOG);
 export const openSignupDialog = () => action(UiActionTypes.OPEN_SIGNUP_DIALOG);

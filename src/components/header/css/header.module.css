@@ -12,11 +12,11 @@
   margin-right: 10px;
 }
 
-/* .searchArea {
+.newPostButtonContainer {
   display: flex;
   flex: 1;
   width: 150px;
-} */
+}
 
 .searchInput {
   width:100%;

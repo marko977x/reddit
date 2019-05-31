@@ -14,7 +14,8 @@ const initialState: UiState = {
   openedPostId: "",
   shownPosts: [],
   isLoginDialogOpened: false,
-  isSignupDialogOpened: false
+  isSignupDialogOpened: false,
+  topics: []
 }
 
 const reducer: Reducer<UiState> = (state = initialState, action) => {
@@ -43,6 +44,11 @@ const reducer: Reducer<UiState> = (state = initialState, action) => {
     case UiActionTypes.SET_SHOWN_POSTS: {
       return {
         ...state, shownPosts: action.payload
+      }
+    }
+    case UiActionTypes.SET_TOPICS: {
+      return {
+        ...state, topics: action.payload
       }
     }
     case UiActionTypes.OPEN_LOGIN_DIALOG: {

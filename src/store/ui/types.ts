@@ -6,13 +6,15 @@ export interface UiState {
   isOpenedSinglePost: boolean,
   loggedUser: UserState,
   isLoginDialogOpened: boolean,
-  isSignupDialogOpened: boolean
+  isSignupDialogOpened: boolean,
+  topics: string[]
 }
 
 export enum UiActionTypes {
   FETCH_DATA = "ui/FETCH_DATA",
   SET_SHOWN_POSTS = "ui/SET_SHOWN_POSTS",
   SET_LOGGED_USER = "ui/SET_LOGGED_USER",
+  SET_TOPICS = "ui/SET_TOPICS",
   LOGOUT_USER = "ui/LOGOUT_USER",
   OPEN_LOGIN_DIALOG = "ui/OPEN_LOGIN_DIALOG",
   CLOSE_LOGIN_DIALOG = "ui/CLOSE_LOGIN_DIALOG",

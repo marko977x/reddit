@@ -9,7 +9,8 @@ class Routes extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Route exact path="/" component={NewPostForm}></Route>
+          <Route exact path="/" component={Home}></Route>
+          <Route path="/newPost" component={NewPostForm}></Route>
           <Route path="/:id" component={OpenedPost}></Route>
         </div>
       </BrowserRouter >

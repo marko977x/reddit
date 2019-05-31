@@ -94,6 +94,7 @@ class Post extends Component<allProps, IState> {
 }
 
 const mapStateToProps = (rootReducer: any, ownProps: any) => {
+  console.log(ownProps);
   return {
     user: rootReducer.users.byId[ownProps.postState.authorId]
   }
