@@ -2,6 +2,9 @@ import * as saga from "redux-saga/effects";
 import { CommentActionTypes } from "./types";
 import { DATABASE_URL } from "../ui/saga";
 import { apiFetch } from "../../services/auth";
+import { AppActionTypes } from "../app/types";
+import normalize from "../../services/normalizer";
+import { loadComments } from "./action";
 
 export const COMMENTS_RESOURCE_URL = DATABASE_URL + "comments/";
 
@@ -21,8 +24,14 @@ function* updateParentComment(comment: any) {
   yield apiFetch('PUT', COMMENTS_RESOURCE_URL + parentComment.id, parentComment);
 }
 
+function* fetchData() {
+  let json = yield apiFetch('GET', COMMENTS_RESOURCE_URL, "");
+  yield saga.put(loadComments(normalize(json)));
+}
+
 function* watchFetchRequest() {
   yield saga.takeEvery(CommentActionTypes.REPLY_TO_COMMENT, replyToComment);
+  yield saga.takeLatest(AppActionTypes.FETCH_DATA, fetchData);
 }
 
 export function* commentsSaga() {

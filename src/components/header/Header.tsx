@@ -34,7 +34,7 @@ class Header extends Component<allProps, IState> {
   }
 
   render() {
-    if(this.state.redirect) return <Redirect to={"/newPost"}></Redirect>
+    // if(this.state.redirect) this.props.history.push("./newPost");
     return (
       <div>
         <AppBar position="static">

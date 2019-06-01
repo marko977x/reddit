@@ -2,6 +2,7 @@ import { CommentActionTypes, CommentState } from "./types";
 import { Reducer } from "redux";
 import { NormalizedObjects } from "..";
 import { PostActionTypes } from "../post/types";
+import { AppActionTypes } from "../app/types";
 
 const initialState: NormalizedObjects<CommentState> = {
   byId: {},
@@ -10,6 +11,7 @@ const initialState: NormalizedObjects<CommentState> = {
 
 const reducer: Reducer<NormalizedObjects<CommentState>> = (state = initialState, action) => {
   switch (action.type) {
+    case AppActionTypes.FETCH_DATA: { return state; }
     case CommentActionTypes.LOAD_COMMENTS: {
       return action.payload;
     }

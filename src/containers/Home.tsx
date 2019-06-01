@@ -7,7 +7,7 @@ import styles from "./css/home.module.css";
 import { UiState } from '../store/ui/types';
 import { NormalizedObjects } from '../store';
 import { PostState } from '../store/post/types';
-import { fetchData } from '../store/ui/action';
+import { fetchData } from '../store/app/action';
 
 interface PropsFromState {
   ui: UiState,

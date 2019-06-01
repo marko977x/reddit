@@ -7,8 +7,6 @@ export const setLoggedUser = (user: UserState) =>
 
 export const logoutUser = () => action(UiActionTypes.LOGOUT_USER);
 
-export const fetchData = () => action(UiActionTypes.FETCH_DATA);
-
 export const setShownPosts = (postsIds: string[]) =>
   action(UiActionTypes.SET_SHOWN_POSTS, postsIds);
 

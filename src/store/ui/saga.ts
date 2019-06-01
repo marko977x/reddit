@@ -1,40 +1,19 @@
 import * as saga from "redux-saga/effects";
 import { UiActionTypes } from "./types";
 import { apiFetch } from "../../services/auth";
-import { loadPosts } from "../post/action";
-import { setShownPosts, setTopics } from "./action";
-import { loadComments } from "../comment/action";
-import { loadUsers } from "../user/action";
-import { NormalizedObjects } from "..";
+import { setTopics } from "./action";
+import { AppActionTypes } from "../app/types";
 
 export const DATABASE_URL = "http://localhost:4000/";
+export const TOPICS_RESOURCE_URL = DATABASE_URL + "topics/";
 
 function* fetchData() {
-  let postsJson = yield apiFetch('GET', DATABASE_URL + "posts", "");
-  yield saga.put(loadPosts(normalize(postsJson)));
-  let json = yield apiFetch('GET', DATABASE_URL + "comments", "");
-  yield saga.put(loadComments(normalize(json)));
-  json = yield apiFetch('GET', DATABASE_URL + "users", "");
-  yield saga.put(loadUsers(normalize(json)));
-  json = yield apiFetch('GET', DATABASE_URL + "topics", "");
+  const json = yield apiFetch('GET', TOPICS_RESOURCE_URL, "");
   yield saga.put(setTopics(json));
-  yield saga.put(setShownPosts(normalize(postsJson).allIds));
-}
-
-function normalize(json: any): any {
-  let result: NormalizedObjects<any> = {
-    byId: {},
-    allIds: []
-  }
-  json.forEach((element: any, index: number) => {
-    result.byId[element.id] = element;
-    result.allIds[index] = element.id;
-  });
-  return result;
 }
 
 function* watchRequests() {
-  yield saga.takeLatest(UiActionTypes.FETCH_DATA, fetchData);
+  yield saga.takeLatest(AppActionTypes.FETCH_DATA, fetchData);
 }
 
 export function* uiSaga() {

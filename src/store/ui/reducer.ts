@@ -1,5 +1,6 @@
 import { UiState, UiActionTypes } from "./types";
 import { Reducer } from "redux";
+import { PostActionTypes } from "../post/types";
 
 const initialState: UiState = {
   isOpenedSinglePost: false,
@@ -38,12 +39,9 @@ const reducer: Reducer<UiState> = (state = initialState, action) => {
         }
       }
     }
-    case UiActionTypes.FETCH_DATA: { 
-      return state; 
-    }
-    case UiActionTypes.SET_SHOWN_POSTS: {
+    case PostActionTypes.LOAD_POSTS: {
       return {
-        ...state, shownPosts: action.payload
+        ...state, shownPosts: action.payload.allIds
       }
     }
     case UiActionTypes.SET_TOPICS: {

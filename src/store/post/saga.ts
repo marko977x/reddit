@@ -2,7 +2,10 @@ import * as saga from "redux-saga/effects";
 import { PostActionTypes } from "./types";
 import { apiFetch } from "../../services/auth";
 import { DATABASE_URL } from "../ui/saga";
-import addCommentToDb, { COMMENTS_RESOURCE_URL } from "../comment/saga";
+import addCommentToDb from "../comment/saga";
+import { AppActionTypes } from "../app/types";
+import normalize from "../../services/normalizer";
+import { loadPosts } from "./action";
 
 const POSTS_RESOURCE_URL = DATABASE_URL + "posts/";
 
@@ -11,8 +14,14 @@ export function* postSaga() {
 }
 
 function* watchRequests() {
+  yield saga.takeLatest(AppActionTypes.FETCH_DATA, fetchData);
   yield saga.takeEvery(PostActionTypes.ADD_POST, addPost);
   yield saga.takeEvery(PostActionTypes.ADD_COMMENT_TO_POST, addCommentToPost);
+}
+
+function* fetchData() {
+  let json = yield apiFetch('GET', POSTS_RESOURCE_URL, "");
+  yield saga.put(loadPosts(normalize(json)));
 }
 
 function* addPost(action: any) {

@@ -1,6 +1,7 @@
 import { NormalizedObjects } from "..";
 import { Reducer } from "redux";
 import { UserActionTypes, UserState } from "./types";
+import { AppActionTypes } from "../app/types";
 
 const initialState: NormalizedObjects<UserState> = {
   byId: {},
@@ -9,6 +10,7 @@ const initialState: NormalizedObjects<UserState> = {
 
 const reducer: Reducer<NormalizedObjects<UserState>> = (state = initialState, action) => {
   switch (action.type) {
+    case AppActionTypes.FETCH_DATA: { return state; }
     case UserActionTypes.SIGN_UP: {
       const userId = action.payload.id;
       return {

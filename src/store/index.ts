@@ -1,4 +1,4 @@
-import { combineReducers, createStore, applyMiddleware, compose } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { all } from "@redux-saga/core/effects";
 import { commentReducer } from "./comment/reducer";

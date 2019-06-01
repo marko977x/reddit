@@ -11,7 +11,6 @@ export interface UiState {
 }
 
 export enum UiActionTypes {
-  FETCH_DATA = "ui/FETCH_DATA",
   SET_SHOWN_POSTS = "ui/SET_SHOWN_POSTS",
   SET_LOGGED_USER = "ui/SET_LOGGED_USER",
   SET_TOPICS = "ui/SET_TOPICS",

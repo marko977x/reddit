@@ -1,6 +1,7 @@
 import { NormalizedObjects } from "..";
 import { Reducer } from "redux";
 import { PostState, PostActionTypes } from "./types";
+import { AppActionTypes } from "../app/types";
 
 const initialState: NormalizedObjects<PostState> = {
   byId: {},
@@ -9,6 +10,7 @@ const initialState: NormalizedObjects<PostState> = {
 
 const reducer: Reducer<NormalizedObjects<PostState>> = (state = initialState, action) => {
   switch (action.type) {
+    case AppActionTypes.FETCH_DATA: { return state; }
     case PostActionTypes.ADD_POST: {
       return state;
     }
@@ -23,7 +25,7 @@ const reducer: Reducer<NormalizedObjects<PostState>> = (state = initialState, ac
           ...state.byId,
           [action.payload.postId]: {
             ...state.byId[action.payload.postId],
-            comments: [ ...state.byId[action.payload.postId].comments, commentId ]
+            comments: [...state.byId[action.payload.postId].comments, commentId]
           }
         }
       }
