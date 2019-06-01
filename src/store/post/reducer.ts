@@ -12,7 +12,15 @@ const reducer: Reducer<NormalizedObjects<PostState>> = (state = initialState, ac
   switch (action.type) {
     case AppActionTypes.FETCH_DATA: { return state; }
     case PostActionTypes.ADD_POST: {
-      return state;
+      const id = action.payload.id;
+      return {
+        ...state, 
+        byId: {
+          ...state.byId,
+          [id]: action.payload
+        },
+        allIds: [...state.allIds, id]
+      }
     }
     case PostActionTypes.LOAD_POSTS: {
       return action.payload;

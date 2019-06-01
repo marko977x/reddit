@@ -23,6 +23,24 @@
         "comment3",
         "LChQjDgV5"
       ]
+    },
+    {
+      "id": "ME40v7U33",
+      "authorId": "62Wv5g3xs",
+      "likes": 0,
+      "comments": [
+        "sdsC5F2T6"
+      ],
+      "content": "Praesent sodales purus justo, a tempus quam rutrum vel. Duis at arcu sit amet augue aliquet eleifend. Aliquam auctor molestie mauris quis auctor. Proin bibendum sollicitudin sapien, vitae dignissim ipsum interdum id.",
+      "topic": "Computer Science"
+    },
+    {
+      "id": "HK-EP3m0r",
+      "authorId": "marko977xID",
+      "likes": 0,
+      "comments": [],
+      "content": "Sed non nisi vitae arcu aliquam sagittis eu sodales lorem. In hac habitasse platea dictumst. Nullam accumsan porttitor mi, non egestas elit pretium at. Aliquam lacus tellus, porttitor in sollicitudin quis, eleifend in tellus. Curabitur vitae lectus eu magna tincidunt lacinia. Quisque mollis mauris lorem, nec elementum erat pretium in. Mauris mollis condimentum arcu, et rutrum orci elementum non.",
+      "topic": "Web Development"
     }
   ],
   "comments": [
@@ -112,6 +130,15 @@
       "likes": 0,
       "parentCommentId": null,
       "postId": "post2"
+    },
+    {
+      "authorId": "62Wv5g3xs",
+      "comments": [],
+      "content": "Praesent sodales purus justo, a tempus quam rutrum vel. Duis at arcu sit amet augue aliquet eleifend. Aliquam auctor molestie mauris quis auctor.",
+      "id": "sdsC5F2T6",
+      "likes": 0,
+      "parentCommentId": null,
+      "postId": "ME40v7U33"
     }
   ],
   "users": [
@@ -154,6 +181,11 @@
     "Basketball",
     "Computer Science",
     "Technology",
-    "Education"
+    "Education",
+    "News",
+    "Books",
+    "Medicine",
+    "Web Development",
+    "Software Development"
   ]
 }

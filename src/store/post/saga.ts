@@ -25,7 +25,7 @@ function* fetchData() {
 }
 
 function* addPost(action: any) {
-  yield null;
+  yield apiFetch('POST', POSTS_RESOURCE_URL, action.payload);
 }
 
 function* addCommentToPost(action: any) {

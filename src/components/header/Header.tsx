@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   isLoggedUser: boolean
@@ -34,7 +35,12 @@ class Header extends Component<allProps, IState> {
   }
 
   render() {
-    // if(this.state.redirect) this.props.history.push("./newPost");
+    if(this.state.redirect){
+      if(this.props.isLoggedUser)
+        return <Redirect to={"/newPost"} />
+      else this.props.openLoginDialog();
+    }
+
     return (
       <div>
         <AppBar position="static">

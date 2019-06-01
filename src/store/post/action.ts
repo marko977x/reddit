@@ -3,7 +3,7 @@ import { PostActionTypes, PostState } from "./types";
 import { NormalizedObjects } from "..";
 import { CommentState } from "../comment/types";
 
-export const addPost = () => action(PostActionTypes.ADD_POST);
+export const addPost = (post: PostState) => action(PostActionTypes.ADD_POST, post);
 
 export const loadPosts = (posts: NormalizedObjects<PostState>) =>
   action(PostActionTypes.LOAD_POSTS, posts);
