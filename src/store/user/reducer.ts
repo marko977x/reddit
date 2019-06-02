@@ -16,17 +16,21 @@ const reducer: Reducer<NormalizedObjects<UserState>> = (state = initialState, ac
       const userId = action.payload.id;
       return {
         ...state,
-        [userId]: {
-          id: userId,
-          username: action.payload.username,
-          email: action.payload.email,
-          password: action.payload.password,
-          posts: [],
-          comments: [],
-          likedPosts: [],
-          dislikedPosts: [],
-          likedComments: [],
-          dislikedComments: []
+        byId: {
+          ...state.byId,
+          [userId]: {
+            ...state.byId[userId],
+            id: userId,
+            username: action.payload.username,
+            email: action.payload.email,
+            password: action.payload.password,
+            posts: [],
+            comments: [],
+            likedPosts: [],
+            dislikedPosts: [],
+            likedComments: [],
+            dislikedComments: []
+          }
         },
         allIds: {
           ...state.allIds, userId

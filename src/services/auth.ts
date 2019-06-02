@@ -1,3 +1,6 @@
+import { NormalizedObjects } from "../store";
+import { UserState } from "../store/user/types";
+
 const MINIMUM_PASSWORD_LENGTH = 6;
 const MINIMUM_USERNAME_LENGTH = 6;
 
@@ -36,4 +39,13 @@ export function validatePassword(password: string): boolean {
 
 export function validateUsername(username: string): boolean {
   return username.length >= MINIMUM_USERNAME_LENGTH;
+}
+
+export function getUserByEmail(users: NormalizedObjects<UserState>, email: string) {
+  for(let index = 0; index < users.allIds.length; index++) {
+    const id = users.allIds[index];
+    if (users.byId[id].email === email){
+      return users.byId[id];
+  }};
+  return null;
 }

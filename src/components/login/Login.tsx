@@ -5,6 +5,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { setLoggedUser, closeLoginDialog } from '../../store/ui/action';
 import { NormalizedObjects } from '../../store';
+import { getUserByEmail } from '../../services/auth';
 
 interface IState {
   email: string,
@@ -66,28 +67,26 @@ class Login extends Component<allProps, IState> {
   }
 
   onSubmitClick = () => {
-    let result: UserState | null = this.getUserByEmail();
-    if(result && result.password === this.state.password) {
-      this.props.setLoggedUser(result);
-      this.props.closeDialog();
-      this.setState({email: "", password: ""});
-      return;
-    }
-    this.setState({passwordError: {error: true, errorText: "Invalid password"}});
-    window.location.reload();
-  }
-
-  getUserByEmail = (): UserState | null => {
-    const users = this.props.users;
-    for(let index = 0; index < users.allIds.length; index++) {
-      const id = users.allIds[index];
-      if (users.byId[id].email === this.state.email){
-        this.setState({emailError: {error: false, errorText: ""}});
-        return users.byId[id];
+    let user = getUserByEmail(this.props.users, this.state.email);
+    if(user != null) {
+      if(user.password === this.state.password) {
+        this.props.setLoggedUser(user);
+        this.props.closeDialog();
+        this.setState({email: "", password: ""});
       }
-    };
-    this.setState({emailError: {error: true, errorText: "Invalid email"}});
-    return null;
+      else {
+        this.setState({
+          passwordError: {error: true, errorText: "Invalid password"},
+          emailError: {error: false, errorText: ""}
+        });
+      }
+    }
+    else {
+      this.setState({
+        emailError:
+          { error: true, errorText: "Invalid email" }
+      });
+    }
   }
 }
 

@@ -6,14 +6,25 @@
       "topic": "Topic",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
       "likes": [
+        "7x25RQ2Sl",
         "62Wv5g3xs"
       ],
       "dislikes": [],
-      "likesCount": 1,
+      "likesCount": 2,
       "comments": [
         "comment1",
         "HRTObbfft"
       ]
+    },
+    {
+      "id": "Si-SCaMro",
+      "authorId": "7x25RQ2Sl",
+      "likes": [],
+      "dislikes": [],
+      "comments": [],
+      "likesCount": 0,
+      "content": "Donec pretium ipsum non mattis volutpat. Maecenas sed leo a sem porta placerat. Phasellus laoreet egestas nulla, sit amet molestie enim gravida sit amet.",
+      "topic": "Web Development"
     }
   ],
   "comments": [
@@ -37,9 +48,11 @@
       ],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat.",
       "id": "HRTObbfft",
-      "likes": [],
+      "likes": [
+        "7x25RQ2Sl"
+      ],
       "dislikes": [],
-      "likesCount": 0,
+      "likesCount": 1,
       "parentCommentId": null,
       "postId": "post1"
     },
@@ -79,6 +92,22 @@
       "dislikedComments": [
         "l4Q7Einee"
       ]
+    },
+    {
+      "id": "7x25RQ2Sl",
+      "username": "marko977x",
+      "email": "marko977x@gmail.com",
+      "password": "marko977x",
+      "posts": [],
+      "comments": [],
+      "likedPosts": [
+        "post1"
+      ],
+      "dislikedPosts": [],
+      "likedComments": [
+        "HRTObbfft"
+      ],
+      "dislikedComments": []
     }
   ],
   "topics": [

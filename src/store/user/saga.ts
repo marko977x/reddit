@@ -17,7 +17,11 @@ function* addUser(action: any) {
   let user: UserState = {
     ...action.payload,
     comments: [],
-    posts: []
+    posts: [],
+    likedPosts: [],
+    likedComments: [],
+    dislikedPosts: [],
+    dislikedComments: []
   }
   yield apiFetch('POST', DATABASE_URL + "users", user);
 }
