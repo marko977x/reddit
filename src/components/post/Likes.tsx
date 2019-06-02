@@ -46,9 +46,8 @@ class Likes extends Component<AllProps, IState> {
   }
 
   componentDidUpdate(prevProps: any) {
-    if(prevProps.ui != this.props.ui)
+    if(prevProps.ui !== this.props.ui)
       this.update();
-    console.log("update");
   }
 
   componentDidMount() {

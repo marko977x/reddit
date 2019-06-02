@@ -22,11 +22,9 @@
       "authorId": "marko977xID",
       "topic": "Topic",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "likes": [
-        "62Wv5g3xs"
-      ],
+      "likes": [],
       "dislikes": [],
-      "likesCount": 1,
+      "likesCount": 0,
       "comments": [
         "comment3",
         "LChQjDgV5"
@@ -57,6 +55,16 @@
       ],
       "content": "Sed non nisi vitae arcu aliquam sagittis eu sodales lorem. In hac habitasse platea dictumst. Nullam accumsan porttitor mi, non egestas elit pretium at. Aliquam lacus tellus, porttitor in sollicitudin quis, eleifend in tellus. Curabitur vitae lectus eu magna tincidunt lacinia. Quisque mollis mauris lorem, nec elementum erat pretium in. Mauris mollis condimentum arcu, et rutrum orci elementum non.",
       "topic": "Web Development"
+    },
+    {
+      "id": "1Fj1gXYCJ",
+      "authorId": "62Wv5g3xs",
+      "likes": [],
+      "dislikes": [],
+      "comments": [],
+      "likesCount": 0,
+      "content": "<Header isLoggedUser={this.props.ui.loggedUser.id === \"\" ? false : true}></Header>",
+      "topic": "Technology"
     }
   ],
   "comments": [
@@ -240,8 +248,7 @@
       "likedPosts": [
         "HK-EP3m0r",
         "ME40v7U33",
-        "post1",
-        "post2"
+        "post1"
       ],
       "dislikedPosts": [],
       "likedComments": [

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../components/header/Header';
 import { Card, CardContent, TextField, Select, MenuItem, FormControl, Button, InputLabel, OutlinedInput } from '@material-ui/core';
 import styles from "./css/newPostForm.module.css";
 import { connect } from 'react-redux';
@@ -10,6 +9,8 @@ import { PostState } from '../store/post/types';
 import shortid from "shortid";
 import { UiState } from '../store/ui/types';
 import { Redirect } from 'react-router';
+import Header from '../components/header/Header';
+import { HOME_PAGE_PATH } from '../Routes';
 
 interface PropsFromState {
   ui: UiState
@@ -45,40 +46,44 @@ class NewPostForm extends Component<AllProps, IState> {
   }
 
   render() {
+    console.log(this.state);
     if(this.state.redirect) 
-      return <Redirect to={"/"} />
+      return <Redirect to={HOME_PAGE_PATH} />
 
     return (
-      <div className={styles.cardContainer}>
-        <Card className={styles.card}>
-          <CardContent>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel>Topic</InputLabel>
-              <Select 
-                error={this.state.topicError.error}
-                value={this.state.topic}
-                onChange={this.selectTopic} 
-                input={<OutlinedInput labelWidth={50}/>}>
-                {this.props.ui.topics.map((topic, index) => {
-                  return(<MenuItem value={topic} key={index}>{topic}</MenuItem>);
-                })}
-              </Select>
-            </FormControl>
-            <TextField
-              id="outlined-multiline-static" rows={5}
-              placeholder={"Enter you post here"}
-              multiline fullWidth margin="normal" variant="outlined"
-              value={this.state.content}
-              onChange={this.setContent}
-              error={this.state.contentError.error}
-              helperText={this.state.contentError.errorText}/>
-            <div className={styles.submitButton}>
-              <Button variant="contained" color={"primary"} onClick={this.submitPost}>
-                Submit
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+      <div>
+        <Header isLoggedUser={this.props.ui.loggedUser.id === "" ? false : true}></Header>
+        <div className={styles.cardContainer}>
+          <Card className={styles.card}>
+            <CardContent>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel>Topic</InputLabel>
+                <Select 
+                  error={this.state.topicError.error}
+                  value={this.state.topic}
+                  onChange={this.selectTopic} 
+                  input={<OutlinedInput labelWidth={50}/>}>
+                  {this.props.ui.topics.map((topic, index) => {
+                    return(<MenuItem value={topic} key={index}>{topic}</MenuItem>);
+                  })}
+                </Select>
+              </FormControl>
+              <TextField
+                id="outlined-multiline-static" rows={5}
+                placeholder={"Enter you post here"}
+                multiline fullWidth margin="normal" variant="outlined"
+                value={this.state.content}
+                onChange={this.setContent}
+                error={this.state.contentError.error}
+                helperText={this.state.contentError.errorText}/>
+              <div className={styles.submitButton}>
+                <Button variant="contained" color={"primary"} onClick={this.submitPost}>
+                  Submit
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+      </div>
     </div>
     );
   }

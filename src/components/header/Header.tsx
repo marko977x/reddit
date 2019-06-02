@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
 import { Redirect } from 'react-router';
+import { NEW_POST_PAGE_PATH } from '../../Routes';
 
 interface IProps {
   isLoggedUser: boolean
@@ -34,12 +35,9 @@ class Header extends Component<allProps, IState> {
   }
 
   render() {
-    if(this.state.redirect){
-      if(this.props.isLoggedUser)
-        return <Redirect to={"/newPost"} />
-      else this.props.openLoginDialog();
-    }
-
+    if (this.state.redirect && window.location.pathname !== NEW_POST_PAGE_PATH)
+      return <Redirect to={NEW_POST_PAGE_PATH} />
+    
     return (
       <div>
         <AppBar position="static">
@@ -72,7 +70,9 @@ class Header extends Component<allProps, IState> {
   }
 
   onNewPostClick = () => {
-    this.setState({redirect: true});
+    this.props.isLoggedUser ? 
+      this.setState({ redirect: true}) : 
+      this.props.openLoginDialog();
   }
 }
 

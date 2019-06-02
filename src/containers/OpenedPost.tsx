@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../components/header/Header';
 import Post from '../components/post/Post';
 import { RouteComponentProps } from 'react-router';
 import { Dispatch } from 'redux';
