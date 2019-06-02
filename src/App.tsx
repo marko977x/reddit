@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import { UiState } from './store/ui/types';
-import { connect } from 'react-redux';
 import Routes from './Routes';
 
-interface PropsFromState {
-  ui: UiState
-}
-
-class App extends Component<PropsFromState> {
+class App extends Component {
   render() {
     return (
       <div className="App">
@@ -17,10 +11,4 @@ class App extends Component<PropsFromState> {
   }
 }
 
-const mapStateToProps = (rootReducer: any) => {
-  return {
-    ui: rootReducer.ui
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

@@ -1,12 +1,9 @@
 import * as saga from "redux-saga/effects";
 import { CommentActionTypes } from "./types";
-import { DATABASE_URL } from "../ui/saga";
 import { apiFetch } from "../../services/auth";
-import { AppActionTypes } from "../app/types";
-import normalize from "../../services/normalizer";
-import { loadComments } from "./action";
 import { UserActionTypes } from "../user/types";
 import { updateUser } from "../post/saga";
+import { DATABASE_URL } from "../user/saga";
 
 export const COMMENTS_RESOURCE_URL = DATABASE_URL + "comments/";
 
@@ -16,7 +13,6 @@ export function* commentsSaga() {
 
 function* watchFetchRequest() {
   yield saga.takeEvery(CommentActionTypes.REPLY_TO_COMMENT, replyToComment);
-  yield saga.takeLatest(AppActionTypes.FETCH_DATA, fetchData);
   yield saga.takeEvery(UserActionTypes.LIKE_COMMENT, likeDislikeUpdate);
   yield saga.takeEvery(UserActionTypes.DISLIKE_COMMENT, likeDislikeUpdate);
 }
@@ -35,11 +31,6 @@ function* updateParentComment(comment: any) {
     'GET', COMMENTS_RESOURCE_URL + comment.parentCommentId, "");
   parentComment.comments.push(comment.id);
   yield apiFetch('PUT', COMMENTS_RESOURCE_URL + parentComment.id, parentComment);
-}
-
-function* fetchData() {
-  let json = yield apiFetch('GET', COMMENTS_RESOURCE_URL, "");
-  yield saga.put(loadComments(normalize(json)));
 }
 
 function* likeDislikeUpdate(action: any) {

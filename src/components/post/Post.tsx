@@ -4,7 +4,7 @@ import Likes from './Likes';
 import PostHeader from './PostHeader';
 import styles from "./css/post.module.css";
 import PostContent from './PostContent';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
 import { connect } from 'react-redux';

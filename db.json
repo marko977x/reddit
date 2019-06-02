@@ -2,7 +2,7 @@
   "posts": [
     {
       "id": "post1",
-      "authorId": "marko977xID",
+      "authorId": "62Wv5g3xs",
       "topic": "Topic",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
       "likes": [
@@ -11,255 +11,45 @@
       "dislikes": [],
       "likesCount": 1,
       "comments": [
-        "comment1",
-        "comment2",
-        "fmkGe-HH3",
-        "1QM5uSoe4"
+        "comment1"
       ]
-    },
-    {
-      "id": "post2",
-      "authorId": "marko977xID",
-      "topic": "Topic",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "likes": [],
-      "dislikes": [],
-      "likesCount": 0,
-      "comments": [
-        "comment3",
-        "LChQjDgV5"
-      ]
-    },
-    {
-      "id": "ME40v7U33",
-      "authorId": "62Wv5g3xs",
-      "likes": [
-        "62Wv5g3xs"
-      ],
-      "dislikes": [],
-      "likesCount": 1,
-      "comments": [],
-      "content": "Praesent sodales purus justo, a tempus quam rutrum vel. Duis at arcu sit amet augue aliquet eleifend. Aliquam auctor molestie mauris quis auctor. Proin bibendum sollicitudin sapien, vitae dignissim ipsum interdum id.",
-      "topic": "Computer Science"
-    },
-    {
-      "id": "HK-EP3m0r",
-      "authorId": "marko977xID",
-      "likes": [
-        "62Wv5g3xs"
-      ],
-      "dislikes": [],
-      "likesCount": 1,
-      "comments": [
-        "UgSyl3UCq"
-      ],
-      "content": "Sed non nisi vitae arcu aliquam sagittis eu sodales lorem. In hac habitasse platea dictumst. Nullam accumsan porttitor mi, non egestas elit pretium at. Aliquam lacus tellus, porttitor in sollicitudin quis, eleifend in tellus. Curabitur vitae lectus eu magna tincidunt lacinia. Quisque mollis mauris lorem, nec elementum erat pretium in. Mauris mollis condimentum arcu, et rutrum orci elementum non.",
-      "topic": "Web Development"
-    },
-    {
-      "id": "1Fj1gXYCJ",
-      "authorId": "62Wv5g3xs",
-      "likes": [],
-      "dislikes": [],
-      "comments": [],
-      "likesCount": 0,
-      "content": "<Header isLoggedUser={this.props.ui.loggedUser.id === \"\" ? false : true}></Header>",
-      "topic": "Technology"
     }
   ],
   "comments": [
     {
       "id": "comment1",
-      "authorId": "marko977xID",
+      "authorId": "62Wv5g3xs",
       "postId": "post1",
       "parentCommentId": "",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "likes": [],
-      "dislikes": [
+      "likes": [
         "62Wv5g3xs"
       ],
-      "likesCount": -1,
-      "comments": [
-        "FAM2vr8Ak"
-      ]
-    },
-    {
-      "id": "comment2",
-      "authorId": "marko977xID",
-      "postId": "post1",
-      "parentCommentId": "",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "likes": [],
-      "dislikes": [
-        "62Wv5g3xs"
-      ],
-      "likesCount": -1,
+      "dislikes": [],
+      "likesCount": 1,
       "comments": []
-    },
-    {
-      "id": "comment3",
-      "authorId": "marko977xID",
-      "postId": "post2",
-      "parentCommentId": "",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "likes": [],
-      "dislikes": [],
-      "likesCount": 0,
-      "comments": [
-        "gWXUzMus4"
-      ]
-    },
-    {
-      "authorId": "62Wv5g3xs",
-      "comments": [],
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "id": "fmkGe-HH3",
-      "likes": [
-        "62Wv5g3xs"
-      ],
-      "dislikes": [],
-      "likesCount": 1,
-      "parentCommentId": null,
-      "postId": "post1"
-    },
-    {
-      "authorId": "62Wv5g3xs",
-      "comments": [],
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "id": "1QM5uSoe4",
-      "likes": [],
-      "dislikes": [],
-      "likesCount": 0,
-      "parentCommentId": null,
-      "postId": "post1"
-    },
-    {
-      "authorId": "62Wv5g3xs",
-      "comments": [
-        "ylBeDV_54"
-      ],
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "id": "FAM2vr8Ak",
-      "likes": [
-        "62Wv5g3xs"
-      ],
-      "dislikes": [],
-      "likesCount": 1,
-      "parentCommentId": "comment1",
-      "postId": null
-    },
-    {
-      "authorId": "62Wv5g3xs",
-      "comments": [],
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "id": "ylBeDV_54",
-      "likes": [],
-      "dislikes": [],
-      "likesCount": 0,
-      "parentCommentId": "FAM2vr8Ak",
-      "postId": null
-    },
-    {
-      "authorId": "62Wv5g3xs",
-      "comments": [],
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "id": "gWXUzMus4",
-      "likes": [],
-      "dislikes": [],
-      "likesCount": 0,
-      "parentCommentId": "comment3",
-      "postId": null
-    },
-    {
-      "authorId": "62Wv5g3xs",
-      "comments": [],
-      "content": "const parentComment = yield apiFetch(\n    'GET', COMMENTS_RESOURCE_URL + action.payload.parentCommentId, \"\");\n  parentComment.comments.push(action.payload.id);\n  yield apiFetch('PUT', COMMENTS_RESOURCE_URL + parentComment.id, parentComment);",
-      "id": "LChQjDgV5",
-      "likes": [],
-      "dislikes": [],
-      "likesCount": 0,
-      "parentCommentId": null,
-      "postId": "post2"
-    },
-    {
-      "authorId": "62Wv5g3xs",
-      "comments": [],
-      "content": "Praesent sodales purus justo, a tempus quam rutrum vel. Duis at arcu sit amet augue aliquet eleifend. Aliquam auctor molestie mauris quis auctor.",
-      "id": "sdsC5F2T6",
-      "likes": [],
-      "dislikes": [],
-      "likesCount": 0,
-      "parentCommentId": null,
-      "postId": "ME40v7U33"
-    },
-    {
-      "authorId": "62Wv5g3xs",
-      "comments": [],
-      "content": "Sed non nisi vitae arcu aliquam sagittis eu sodales lorem. In hac habitasse platea dictumst. Nullam accumsan porttitor mi, non egestas elit pretium at.",
-      "id": "UgSyl3UCq",
-      "likes": [
-        "62Wv5g3xs"
-      ],
-      "dislikes": [],
-      "likesCount": 1,
-      "parentCommentId": null,
-      "postId": "HK-EP3m0r"
     }
   ],
   "users": [
-    {
-      "id": "marko977xID",
-      "username": "marko977x",
-      "email": "marko977x@gmail.com",
-      "password": "marko977x",
-      "posts": [
-        "post1",
-        "post2"
-      ],
-      "comments": [
-        "comment1",
-        "comment2",
-        "comment3"
-      ],
-      "likedPosts": [],
-      "dislikedPosts": [],
-      "likedComments": [],
-      "dislikedComments": []
-    },
-    {
-      "username": "marko977x",
-      "email": "marko@gmail.com",
-      "password": "marko977x",
-      "id": "4bMOiXO0d",
-      "comments": [],
-      "posts": [],
-      "likedPosts": [],
-      "dislikedPosts": [],
-      "likedComments": [],
-      "dislikedComments": []
-    },
     {
       "username": "marko97x",
       "email": "marko97x@gmail.com",
       "password": "marko97x",
       "id": "62Wv5g3xs",
-      "comments": [],
-      "posts": [],
+      "comments": [
+        "comment1"
+      ],
+      "posts": [
+        "post1"
+      ],
       "likedPosts": [
-        "HK-EP3m0r",
-        "ME40v7U33",
         "post1"
       ],
       "dislikedPosts": [],
       "likedComments": [
-        "UgSyl3UCq",
-        "fmkGe-HH3",
-        "FAM2vr8Ak"
+        "comment1"
       ],
-      "dislikedComments": [
-        "comment1",
-        "comment2"
-      ]
+      "dislikedComments": []
     }
   ],
   "topics": [

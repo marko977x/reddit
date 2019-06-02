@@ -5,11 +5,11 @@ import { commentReducer } from "./comment/reducer";
 import { userReducer } from "./user/reducer";
 import { postReducer } from "./post/reducer";
 import { uiReducer } from "./ui/reducer";
-import { uiSaga } from "./ui/saga";
 import { userSaga } from "./user/saga";
 import { postSaga } from "./post/saga";
 import { commentsSaga } from "./comment/saga";
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { appSaga } from "./app/saga";
 
 export interface NormalizedObjects<T> {
   byId: { [id: string]: T },
@@ -36,7 +36,7 @@ export default function configureStore() {
 
 export function* rootSaga() {
   yield all([
-    uiSaga(),
+    appSaga(),
     userSaga(),
     postSaga(),
     commentsSaga()

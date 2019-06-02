@@ -7,6 +7,7 @@ import styles from "./css/home.module.css";
 import { PostState } from '../store/post/types';
 import { UiState } from '../store/ui/types';
 import { NormalizedObjects } from '../store';
+import Header from '../components/header/Header';
 
 interface PropsFromState {
   ui: UiState,
@@ -26,10 +27,13 @@ type allProps = PropsFromState & PropsFromDispatch &
 class OpenedPost extends Component<allProps, IState> {
   render() {
     return (
-      <div className={styles.postsContainer}>
-        <Post isOpened={true}
-          postState={this.props.posts.byId[this.props.match.params.id]}>
-        </Post>
+      <div>
+        <Header isLoggedUser={this.props.ui.loggedUser.id === "" ? false : true}></Header>
+        <div className={styles.postsContainer}>
+          <Post isOpened={true}
+            postState={this.props.posts.byId[this.props.match.params.id]}>
+          </Post>
+        </div>
       </div>
     );
   }

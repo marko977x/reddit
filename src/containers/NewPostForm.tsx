@@ -8,7 +8,7 @@ import { Dispatch } from 'redux';
 import { PostState } from '../store/post/types';
 import shortid from "shortid";
 import { UiState } from '../store/ui/types';
-import { Redirect } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import Header from '../components/header/Header';
 import { HOME_PAGE_PATH } from '../Routes';
 
@@ -46,7 +46,6 @@ class NewPostForm extends Component<AllProps, IState> {
   }
 
   render() {
-    console.log(this.state);
     if(this.state.redirect) 
       return <Redirect to={HOME_PAGE_PATH} />
 

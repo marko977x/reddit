@@ -6,6 +6,7 @@ import { UiState } from '../store/ui/types';
 import { NormalizedObjects } from '../store';
 import { PostState } from '../store/post/types';
 import Header from '../components/header/Header';
+import { withRouter } from 'react-router-dom';
 
 interface PropsFromState {
   ui: UiState,
@@ -16,6 +17,7 @@ type allProps = PropsFromState;
 
 class Home extends Component<allProps> {
   render() {
+    console.log(this.props.posts);
     return (
       <div>
         <Header isLoggedUser={this.props.ui.loggedUser.id === "" ? false : true}></Header>

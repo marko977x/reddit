@@ -3,6 +3,7 @@ import { Reducer } from "redux";
 import { PostState, PostActionTypes } from "./types";
 import { AppActionTypes } from "../app/types";
 import { UserActionTypes } from "../user/types";
+import { alreadyLiked, removeFrom, addTo, alreadyDisliked } from "../user/reducer";
 
 const initialState: NormalizedObjects<PostState> = {
   byId: {},
@@ -27,57 +28,56 @@ const reducer: Reducer<NormalizedObjects<PostState>> = (state = initialState, ac
       return action.payload;
     }
     case PostActionTypes.ADD_COMMENT_TO_POST: {
-      const commentId = action.payload.id;
+      const {id, postId} = action.payload;
       return {
         ...state,
         byId: {
           ...state.byId,
-          [action.payload.postId]: {
-            ...state.byId[action.payload.postId],
-            comments: [...state.byId[action.payload.postId].comments, commentId]
+          [postId]: {
+            ...state.byId[postId],
+            comments: [...state.byId[postId].comments, id]
           }
         }
       }
     }
     case UserActionTypes.LIKE_POST: {
       const {postId, userId} = action.payload;
-      const likes = state.byId[postId].likes.includes(userId) ? 
-        state.byId[postId].likes.filter(id => id !== userId) : 
-        [...state.byId[postId].likes, userId];
-      const dislikes = state.byId[postId].dislikes.filter(id => id !== userId);
-      return {
-        ...state,
-        byId: {
-          ...state.byId,
-          [postId]: {
-            ...state.byId[postId],
-            likes: likes,
-            dislikes: dislikes,
-            likesCount: likes.length - dislikes.length
-          }
-        }
-      }
+      let {likes, dislikes} = state.byId[postId];
+
+      likes = alreadyLiked(likes, userId) ? 
+        removeFrom(likes, userId) : addTo(likes, userId);
+
+      dislikes = removeFrom(dislikes, userId);
+
+      return setState(state, postId, likes, dislikes);
     }
     case UserActionTypes.DISLIKE_POST: {
       const {postId, userId} = action.payload;
-      const dislikes = state.byId[postId].dislikes.includes(userId) ?
-        state.byId[postId].dislikes.filter(id => id !== userId) :
-        [...state.byId[postId].dislikes, userId];
-      const likes = state.byId[postId].likes.filter(id => id !== userId);
-      return {
-        ...state,
-        byId: {
-          ...state.byId,
-          [postId]: {
-            ...state.byId[postId],
-            dislikes: dislikes,
-            likes: likes,
-            likesCount: likes.length - dislikes.length
-          }
-        }
-      }
+      let {likes, dislikes} = state.byId[postId];
+
+      dislikes = alreadyDisliked(dislikes, userId) ?
+        removeFrom(dislikes, userId) : addTo(dislikes, userId);
+
+      likes = removeFrom(likes, userId);
+      
+      return setState(state, postId, likes, dislikes);
     }
     default: return state;
+  }
+}
+
+const setState = (state: any, postId: string, likes: string[], dislikes: string[]) => {
+  return {
+    ...state,
+    byId: {
+      ...state.byId,
+      [postId]: {
+        ...state.byId[postId],
+        dislikes: dislikes,
+        likes: likes,
+        likesCount: likes.length - dislikes.length
+      }
+    }
   }
 }
 
