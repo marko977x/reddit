@@ -11,7 +11,8 @@
       "dislikes": [],
       "likesCount": 1,
       "comments": [
-        "comment1"
+        "comment1",
+        "HRTObbfft"
       ]
     }
   ],
@@ -28,6 +29,32 @@
       "dislikes": [],
       "likesCount": 1,
       "comments": []
+    },
+    {
+      "authorId": "62Wv5g3xs",
+      "comments": [
+        "l4Q7Einee"
+      ],
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat.",
+      "id": "HRTObbfft",
+      "likes": [],
+      "dislikes": [],
+      "likesCount": 0,
+      "parentCommentId": null,
+      "postId": "post1"
+    },
+    {
+      "authorId": "62Wv5g3xs",
+      "comments": [],
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat.",
+      "id": "l4Q7Einee",
+      "likes": [],
+      "dislikes": [
+        "62Wv5g3xs"
+      ],
+      "likesCount": -1,
+      "parentCommentId": "HRTObbfft",
+      "postId": null
     }
   ],
   "users": [
@@ -49,7 +76,9 @@
       "likedComments": [
         "comment1"
       ],
-      "dislikedComments": []
+      "dislikedComments": [
+        "l4Q7Einee"
+      ]
     }
   ],
   "topics": [

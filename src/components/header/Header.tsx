@@ -47,7 +47,7 @@ class Header extends Component<allProps, IState> {
               <Typography className={styles.redditTypography} variant="h6" color="inherit" noWrap>Reddit</Typography>
             </div>
             <div className={styles.newPostButtonContainer}>
-              <Button onClick={this.onNewPostClick} className={styles.newPostButton} variant={"contained"} color={"secondary"}>
+              <Button onClick={this.onNewPostClick} variant={"contained"} color={"secondary"}>
                 <AddIcon />
                 <Typography variant={"button"}>Add New Post</Typography>
               </Button>
