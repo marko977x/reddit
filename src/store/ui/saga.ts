@@ -1,5 +1,4 @@
 import * as saga from "redux-saga/effects";
-import { UiActionTypes } from "./types";
 import { apiFetch } from "../../services/auth";
 import { setTopics } from "./action";
 import { AppActionTypes } from "../app/types";

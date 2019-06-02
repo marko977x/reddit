@@ -101,7 +101,16 @@ class SignUp extends Component<allProps, IState> {
         password: this.state.password,
         id: userId
       });
-      this.props.setLoggedUser({...this.state, id:userId, comments:[], posts:[]});
+      this.props.setLoggedUser({
+        ...this.state, 
+        id:userId, 
+        comments:[], 
+        posts:[],
+        likedPosts: [],
+        dislikedPosts: [],
+        likedComments: [],
+        dislikedComments: []
+      });
       this.props.closeDialog();
       this.setState({email: "", password: "", username: ""});
     }

@@ -39,7 +39,12 @@ class Post extends Component<allProps, IState> {
       <div className={styles.post}>
         <Card className={styles.postCard}>
           <CardActions className={styles.postSidebar}>
-            <Likes likes={this.props.postState.likes} IsInCommentSection={false}></Likes>
+            <Likes 
+              likes={this.props.postState.likesCount}
+              IsInCommentSection={false}
+              parentComponentId={this.props.postState.id}
+              parent={this.props.postState}>
+            </Likes>
           </CardActions>
           {this.props.isOpened ? this.renderOpenedPost() : this.renderPost()}
         </Card>

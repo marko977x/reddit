@@ -3,7 +3,9 @@ export interface PostState {
   authorId: string,
   topic: string,
   content: string,
-  likes: number,
+  likes: string[],
+  dislikes: string[],
+  likesCount: number,
   comments: string[]
 }
 

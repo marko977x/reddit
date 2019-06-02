@@ -9,6 +9,7 @@ import { uiSaga } from "./ui/saga";
 import { userSaga } from "./user/saga";
 import { postSaga } from "./post/saga";
 import { commentsSaga } from "./comment/saga";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 export interface NormalizedObjects<T> {
   byId: { [id: string]: T },
@@ -26,7 +27,7 @@ export default function configureStore() {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     rootReducer,
-    applyMiddleware(sagaMiddleware)
+    composeWithDevTools(applyMiddleware(sagaMiddleware))
   );
 
   sagaMiddleware.run(rootSaga);

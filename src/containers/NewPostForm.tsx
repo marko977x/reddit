@@ -49,39 +49,36 @@ class NewPostForm extends Component<AllProps, IState> {
       return <Redirect to={"/"} />
 
     return (
-      <div>
-        <Header isLoggedUser={false}></Header>
-        <div className={styles.cardContainer}>
-          <Card className={styles.card}>
-            <CardContent>
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel>Topic</InputLabel>
-                <Select 
-                  error={this.state.topicError.error}
-                  value={this.state.topic}
-                  onChange={this.selectTopic} 
-                  input={<OutlinedInput labelWidth={50}/>}>
-                  {this.props.ui.topics.map((topic, index) => {
-                    return(<MenuItem value={topic} key={index}>{topic}</MenuItem>);
-                  })}
-                </Select>
-              </FormControl>
-              <TextField
-                id="outlined-multiline-static" rows={5}
-                placeholder={"Enter you post here"}
-                multiline fullWidth margin="normal" variant="outlined"
-                value={this.state.content}
-                onChange={this.setContent}
-                error={this.state.contentError.error}
-                helperText={this.state.contentError.errorText}/>
-              <div className={styles.submitButton}>
-                <Button variant="contained" color={"primary"} onClick={this.submitPost}>
-                  Submit
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-      </div>
+      <div className={styles.cardContainer}>
+        <Card className={styles.card}>
+          <CardContent>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel>Topic</InputLabel>
+              <Select 
+                error={this.state.topicError.error}
+                value={this.state.topic}
+                onChange={this.selectTopic} 
+                input={<OutlinedInput labelWidth={50}/>}>
+                {this.props.ui.topics.map((topic, index) => {
+                  return(<MenuItem value={topic} key={index}>{topic}</MenuItem>);
+                })}
+              </Select>
+            </FormControl>
+            <TextField
+              id="outlined-multiline-static" rows={5}
+              placeholder={"Enter you post here"}
+              multiline fullWidth margin="normal" variant="outlined"
+              value={this.state.content}
+              onChange={this.setContent}
+              error={this.state.contentError.error}
+              helperText={this.state.contentError.errorText}/>
+            <div className={styles.submitButton}>
+              <Button variant="contained" color={"primary"} onClick={this.submitPost}>
+                Submit
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
     </div>
     );
   }
@@ -105,8 +102,10 @@ class NewPostForm extends Component<AllProps, IState> {
       this.props.addPost({
         id: shortid.generate(),
         authorId: this.props.ui.loggedUser.id,
-        likes: 0,
+        likes: [],
+        dislikes: [],
         comments: [],
+        likesCount: 0,
         content: this.state.content,
         topic: this.state.topic
       });
@@ -117,11 +116,11 @@ class NewPostForm extends Component<AllProps, IState> {
 
   postValidation = () => {
     let result: boolean = true;
-    if(this.state.topic == "") {
+    if(this.state.topic === "") {
       this.setState({topicError: {error: true, errorText: "Pick a topic!"}});
       result = false;
     }
-    if(this.state.content == "") {
+    if(this.state.content === "") {
       this.setState({contentError: {error: true, errorText: "Enter a comment!"}});
       result = false;
     }

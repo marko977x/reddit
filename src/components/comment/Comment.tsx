@@ -54,8 +54,10 @@ class Comment extends Component<allProps, IState> {
           </CardContent>
           <CardActions className={styles.commentSidebar}>
             <Likes 
-              likes={comment.likes} 
-              IsInCommentSection={true}>
+              parentComponentId={this.props.commentState.id}
+              likes={comment.likesCount} 
+              IsInCommentSection={true}
+              parent={this.props.commentState}>
             </Likes>
             <IconButton
               className={styles.expandButton}

@@ -62,7 +62,9 @@ class CommentForm extends Component<allProps, IState> {
         comments: [],
         content: this.state.content,
         id: shortid.generate(),
-        likes: 0,
+        likes: [],
+        dislikes: [],
+        likesCount: 0,
         parentCommentId: this.props.isParentComponentPost ? null : this.props.parentComponentId,
         postId: this.props.isParentComponentPost ? this.props.parentComponentId : null
       }

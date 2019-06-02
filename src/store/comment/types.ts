@@ -4,8 +4,10 @@ export interface CommentState {
   postId: string | null,
   parentCommentId: string | null,
   content: string,
-  likes: number,
-  comments: string[]
+  likes: string[],
+  dislikes: string[],
+  likesCount: number,
+  comments: string[],
 }
 
 export interface ReplyToCommentData {

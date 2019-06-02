@@ -5,8 +5,21 @@ import { apiFetch } from "../../services/auth";
 import { AppActionTypes } from "../app/types";
 import normalize from "../../services/normalizer";
 import { loadComments } from "./action";
+import { UserActionTypes } from "../user/types";
+import { updateUser } from "../post/saga";
 
 export const COMMENTS_RESOURCE_URL = DATABASE_URL + "comments/";
+
+export function* commentsSaga() {
+  yield saga.all([saga.fork(watchFetchRequest)]);
+}
+
+function* watchFetchRequest() {
+  yield saga.takeEvery(CommentActionTypes.REPLY_TO_COMMENT, replyToComment);
+  yield saga.takeLatest(AppActionTypes.FETCH_DATA, fetchData);
+  yield saga.takeEvery(UserActionTypes.LIKE_COMMENT, likeDislikeUpdate);
+  yield saga.takeEvery(UserActionTypes.DISLIKE_COMMENT, likeDislikeUpdate);
+}
 
 function* replyToComment(action: any) {
   yield addCommentToDb(action.payload);
@@ -29,11 +42,15 @@ function* fetchData() {
   yield saga.put(loadComments(normalize(json)));
 }
 
-function* watchFetchRequest() {
-  yield saga.takeEvery(CommentActionTypes.REPLY_TO_COMMENT, replyToComment);
-  yield saga.takeLatest(AppActionTypes.FETCH_DATA, fetchData);
+function* likeDislikeUpdate(action: any) {
+  yield updateUser(action.payload.userId);
+  yield updateComment(action.payload.commentId);
 }
 
-export function* commentsSaga() {
-  yield saga.all([saga.fork(watchFetchRequest)]);
+function* updateComment(commentId: string) {
+  const comments = yield saga.select(getComments);
+  const comment = comments.byId[commentId];
+  yield apiFetch('PUT', COMMENTS_RESOURCE_URL + commentId, comment);
 }
+
+export const getComments = (state: any) => state.comments;

@@ -74,6 +74,7 @@ class Login extends Component<allProps, IState> {
       return;
     }
     this.setState({passwordError: {error: true, errorText: "Invalid password"}});
+    window.location.reload();
   }
 
   getUserByEmail = (): UserState | null => {

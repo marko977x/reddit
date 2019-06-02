@@ -2,6 +2,7 @@ import { NormalizedObjects } from "..";
 import { Reducer } from "redux";
 import { PostState, PostActionTypes } from "./types";
 import { AppActionTypes } from "../app/types";
+import { UserActionTypes } from "../user/types";
 
 const initialState: NormalizedObjects<PostState> = {
   byId: {},
@@ -34,6 +35,44 @@ const reducer: Reducer<NormalizedObjects<PostState>> = (state = initialState, ac
           [action.payload.postId]: {
             ...state.byId[action.payload.postId],
             comments: [...state.byId[action.payload.postId].comments, commentId]
+          }
+        }
+      }
+    }
+    case UserActionTypes.LIKE_POST: {
+      const {postId, userId} = action.payload;
+      const likes = state.byId[postId].likes.includes(userId) ? 
+        state.byId[postId].likes.filter(id => id !== userId) : 
+        [...state.byId[postId].likes, userId];
+      const dislikes = state.byId[postId].dislikes.filter(id => id !== userId);
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [postId]: {
+            ...state.byId[postId],
+            likes: likes,
+            dislikes: dislikes,
+            likesCount: likes.length - dislikes.length
+          }
+        }
+      }
+    }
+    case UserActionTypes.DISLIKE_POST: {
+      const {postId, userId} = action.payload;
+      const dislikes = state.byId[postId].dislikes.includes(userId) ?
+        state.byId[postId].dislikes.filter(id => id !== userId) :
+        [...state.byId[postId].dislikes, userId];
+      const likes = state.byId[postId].likes.filter(id => id !== userId);
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [postId]: {
+            ...state.byId[postId],
+            dislikes: dislikes,
+            likes: likes,
+            likesCount: likes.length - dislikes.length
           }
         }
       }
