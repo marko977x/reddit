@@ -26,6 +26,12 @@ const initialState: UiState = {
 
 const reducer: Reducer<UiState> = (state = initialState, action) => {
   switch (action.type) {
+    case PostActionTypes.ADD_POST: {
+      return {
+        ...state, 
+        shownPosts: [...state.shownPosts, action.payload.id]
+      }
+    }
     case UiActionTypes.SET_LOGGED_USER: {
       return {
         ...state, loggedUser: action.payload

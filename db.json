@@ -19,10 +19,12 @@
     {
       "id": "Si-SCaMro",
       "authorId": "7x25RQ2Sl",
-      "likes": [],
+      "likes": [
+        "7x25RQ2Sl"
+      ],
       "dislikes": [],
       "comments": [],
-      "likesCount": 0,
+      "likesCount": 1,
       "content": "Donec pretium ipsum non mattis volutpat. Maecenas sed leo a sem porta placerat. Phasellus laoreet egestas nulla, sit amet molestie enim gravida sit amet.",
       "topic": "Web Development"
     }
@@ -98,7 +100,9 @@
       "username": "marko977x",
       "email": "marko977x@gmail.com",
       "password": "marko977x",
-      "posts": [],
+      "posts": [
+        "DRK742aPQ"
+      ],
       "comments": [],
       "likedPosts": [
         "post1"

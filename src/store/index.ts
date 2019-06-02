@@ -11,6 +11,12 @@ import { commentsSaga } from "./comment/saga";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { appSaga } from "./app/saga";
 
+export const DATABASE_URL = "http://localhost:4000/";
+export const USERS_RESOURCE_URL = DATABASE_URL + "users/";
+export const COMMENTS_RESOURCE_URL = DATABASE_URL + "comments/";
+export const TOPICS_RESOURCE_URL = DATABASE_URL + "topics/";
+export const POSTS_RESOURCE_URL = DATABASE_URL + "posts/";
+
 export interface NormalizedObjects<T> {
   byId: { [id: string]: T },
   allIds: string[]

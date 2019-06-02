@@ -3,9 +3,7 @@ import { PostActionTypes } from "./types";
 import { apiFetch } from "../../services/auth";
 import addCommentToDb from "../comment/saga";
 import { UserActionTypes } from "../user/types";
-import { USERS_RESOURCE_URL, DATABASE_URL } from "../user/saga";
-
-export const POSTS_RESOURCE_URL = DATABASE_URL + "posts/";
+import { POSTS_RESOURCE_URL, USERS_RESOURCE_URL } from "..";
 
 export function* postSaga() {
   yield saga.all([saga.fork(watchRequests)]);

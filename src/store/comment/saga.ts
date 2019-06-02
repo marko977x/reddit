@@ -3,9 +3,7 @@ import { CommentActionTypes } from "./types";
 import { apiFetch } from "../../services/auth";
 import { UserActionTypes } from "../user/types";
 import { updateUser } from "../post/saga";
-import { DATABASE_URL } from "../user/saga";
-
-export const COMMENTS_RESOURCE_URL = DATABASE_URL + "comments/";
+import { COMMENTS_RESOURCE_URL } from "..";
 
 export function* commentsSaga() {
   yield saga.all([saga.fork(watchFetchRequest)]);

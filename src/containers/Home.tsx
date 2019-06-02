@@ -6,6 +6,7 @@ import { UiState } from '../store/ui/types';
 import { NormalizedObjects } from '../store';
 import { PostState } from '../store/post/types';
 import Header from '../components/header/Header';
+import { withRouter } from 'react-router';
 
 interface PropsFromState {
   ui: UiState,
@@ -41,4 +42,4 @@ const mapStateToProps = (rootReducer: any) => {
   }
 }
 
-export default connect(mapStateToProps)(Home);
+export default withRouter(connect(mapStateToProps)(Home) as any);

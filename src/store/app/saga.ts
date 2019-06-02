@@ -6,11 +6,7 @@ import { loadComments } from "../comment/action";
 import normalize from "../../services/normalizer";
 import { loadPosts } from "../post/action";
 import { loadUsers } from "../user/action";
-import { COMMENTS_RESOURCE_URL } from "../comment/saga";
-import { POSTS_RESOURCE_URL } from "../post/saga";
-import { DATABASE_URL, USERS_RESOURCE_URL } from "../user/saga";
-
-export const TOPICS_RESOURCE_URL = DATABASE_URL + "topics/";
+import { DATABASE_URL, TOPICS_RESOURCE_URL, COMMENTS_RESOURCE_URL, POSTS_RESOURCE_URL, USERS_RESOURCE_URL } from "..";
 
 export function* appSaga() {
   yield saga.all([saga.fork(watchRequests)]);
