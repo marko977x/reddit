@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
 import { Redirect } from 'react-router';
 import { NEW_POST_PAGE_PATH } from '../../Routes';
+import { removeItemFromLocalStorage, LOGGED_USER_KEY } from '../../services/local-storage';
 
 interface IProps {
   isLoggedUser: boolean
@@ -36,7 +37,7 @@ class Header extends Component<allProps, IState> {
 
   render() {
     if (this.state.redirect && window.location.pathname !== NEW_POST_PAGE_PATH)
-      return <Redirect to={NEW_POST_PAGE_PATH} />
+      return <Redirect push to={NEW_POST_PAGE_PATH} />
     
     return (
       <div>
@@ -57,7 +58,7 @@ class Header extends Component<allProps, IState> {
               <Button onClick={this.props.openLoginDialog} className={styles.button} variant="contained" >Login</Button>
             </div>
             <div className={this.props.isLoggedUser ? styles.accountMenu : styles.hidden}>
-              <IconButton onClick={this.props.logoutUser}>
+              <IconButton onClick={this.logout}>
                 <Avatar className={styles.accountIcon} src={logoutIcon}></Avatar>
               </IconButton>
             </div>
@@ -67,6 +68,11 @@ class Header extends Component<allProps, IState> {
         <SignUp></SignUp>
       </div>
     );
+  }
+
+  logout = () => {
+    removeItemFromLocalStorage(LOGGED_USER_KEY);
+    this.props.logoutUser();
   }
 
   onNewPostClick = () => {

@@ -1,9 +1,14 @@
-import { action } from "typesafe-actions";
-import { CommentActionTypes, CommentState } from "./types";
+import { CommentActionTypes, CommentState, LoadCommentsSuccessAction, LoadCommentsAction, ReplyToCommentAction } from "./types";
 import { NormalizedObjects } from "..";
 
-export const loadComments = (comments: NormalizedObjects<CommentState>) =>
-  action(CommentActionTypes.LOAD_COMMENTS, comments);
+export function loadComments(comments: NormalizedObjects<CommentState>): LoadCommentsAction {
+  return {type: CommentActionTypes.LOAD_COMMENTS, comments }
+}
 
-export const replyToComment = (comment: CommentState) =>
-  action(CommentActionTypes.REPLY_TO_COMMENT, comment);
+export function loadCommentsSuccess(comments: NormalizedObjects<CommentState>): LoadCommentsSuccessAction {
+  return {type: CommentActionTypes.LOAD_COMMENTS_SUCCESS, comments }
+}
+
+export function replyToComment(comment: CommentState): ReplyToCommentAction {
+  return {type: CommentActionTypes.REPLY_TO_COMMENT, comment }
+}

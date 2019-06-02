@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { setLoggedUser, closeLoginDialog } from '../../store/ui/action';
 import { NormalizedObjects } from '../../store';
 import { getUserByEmail } from '../../services/auth';
+import { setItemToLocalStorage, LOGGED_USER_KEY } from '../../services/local-storage';
 
 interface IState {
   email: string,
@@ -70,9 +71,10 @@ class Login extends Component<allProps, IState> {
     let user = getUserByEmail(this.props.users, this.state.email);
     if(user != null) {
       if(user.password === this.state.password) {
-        this.props.setLoggedUser(user);
+        this.props.setLoggedUser(user.id);
         this.props.closeDialog();
         this.setState({email: "", password: ""});
+        setItemToLocalStorage<string>(LOGGED_USER_KEY, user.id);
       }
       else {
         this.setState({
@@ -92,7 +94,7 @@ class Login extends Component<allProps, IState> {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    setLoggedUser: (user: UserState) => dispatch(setLoggedUser(user)),
+    setLoggedUser: (userId: string) => dispatch(setLoggedUser(userId)),
     closeDialog: () => dispatch(closeLoginDialog())
   }
 }

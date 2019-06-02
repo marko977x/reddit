@@ -1,10 +1,8 @@
-import { UserState } from "../user/types";
-
 export interface UiState {
   shownPosts: string[],
   openedPostId: string,
   isOpenedSinglePost: boolean,
-  loggedUser: UserState,
+  loggedUser: string,
   isLoginDialogOpened: boolean,
   isSignupDialogOpened: boolean,
   topics: string[]

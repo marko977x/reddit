@@ -1,21 +1,46 @@
-import { action } from "typesafe-actions";
-import { UserActionTypes, UserState, SignUpData } from "./types";
+import { UserActionTypes, UserState, SignUpData, SignUpAction, LoadUsersAction, LikePostAction, LikeCommentAction, DislikePostAction, DislikeCommentAction, LoadUsersSuccessAction } from "./types";
 import { NormalizedObjects } from "..";
 
-export const signUp = (signUpData: SignUpData) =>
-  action(UserActionTypes.SIGN_UP, signUpData);
+export function signUp(signUpData: SignUpData): SignUpAction {
+  return { type: UserActionTypes.SIGN_UP, signUpData };
+}
 
-export const loadUsers = (users: NormalizedObjects<UserState>) =>
-  action(UserActionTypes.LOAD_USERS, users);
+export function loadUsers(users: NormalizedObjects<UserState>): LoadUsersAction {
+  return { type: UserActionTypes.LOAD_USERS, users };
+}
 
-export const likePost = (likePostInput: { userId: string, postId: string }) =>
-  action(UserActionTypes.LIKE_POST, likePostInput);
+export function loadUsersSuccess(users: NormalizedObjects<UserState>): LoadUsersSuccessAction {
+  return { type: UserActionTypes.LOAD_USERS_SUCCESS, users };
+}
 
-export const likeComment = (likeCommentInput: { userId: string, commentId: string }) =>
-  action(UserActionTypes.LIKE_COMMENT, likeCommentInput);
+export function likePost(likePostInput: { userId: string, postId: string }): LikePostAction {
+  return {
+    type: UserActionTypes.LIKE_POST,
+    postId: likePostInput.postId,
+    userId: likePostInput.userId
+  };
+}
 
-export const dislikePost = (dislikePostInput: { userId: string, postId: string }) =>
-  action(UserActionTypes.DISLIKE_POST, dislikePostInput);
+export function likeComment(likeCommentInput: { userId: string, commentId: string }): LikeCommentAction {
+  return { 
+    type: UserActionTypes.LIKE_COMMENT,
+    commentId: likeCommentInput.commentId,
+    userId: likeCommentInput.userId 
+  };
+}
 
-export const dislikeComment = (dislikeCommentInput: { userId: string, commentId: string }) =>
-  action(UserActionTypes.DISLIKE_COMMENT, dislikeCommentInput);
+export function dislikePost(dislikePostInput: { userId: string, postId: string }): DislikePostAction {
+  return {
+    type: UserActionTypes.DISLIKE_POST,
+    postId: dislikePostInput.postId,
+    userId: dislikePostInput.userId
+  };
+}
+
+export function dislikeComment(dislikeCommentInput: { userId: string, commentId: string }): DislikeCommentAction {
+  return { 
+    type: UserActionTypes.DISLIKE_COMMENT,
+    commentId: dislikeCommentInput.commentId,
+    userId: dislikeCommentInput.userId
+  };
+}

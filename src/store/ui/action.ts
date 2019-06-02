@@ -1,19 +1,24 @@
-import { action } from "typesafe-actions";
 import { UiActionTypes } from "./types";
-import { UserState } from "../user/types";
+import { Action } from "redux";
 
-export const setLoggedUser = (user: UserState) =>
-  action(UiActionTypes.SET_LOGGED_USER, user);
+export interface SetLoggedUserAction extends Action {
+  user: string
+}
 
-export const logoutUser = () => action(UiActionTypes.LOGOUT_USER);
+export function setLoggedUser(user: string): SetLoggedUserAction {
+  return {type: UiActionTypes.SET_LOGGED_USER, user }
+}
 
-export const setShownPosts = (postsIds: string[]) =>
-  action(UiActionTypes.SET_SHOWN_POSTS, postsIds);
+export interface SetTopicsAction extends Action {
+  topics: string[]
+}
 
-export const setTopics = (topics: string[]) =>
-  action(UiActionTypes.SET_TOPICS, topics);
-
-export const openLoginDialog = () => action(UiActionTypes.OPEN_LOGIN_DIALOG);
-export const closeLoginDialog = () => action(UiActionTypes.CLOSE_LOGIN_DIALOG);
-export const openSignupDialog = () => action(UiActionTypes.OPEN_SIGNUP_DIALOG);
-export const closeSignupDialog = () => action(UiActionTypes.CLOSE_SIGNUP_DIALOG);
+export function setTopics(topics: string[]): SetTopicsAction {
+  return {type: UiActionTypes.SET_TOPICS, topics }
+}
+  
+export function logoutUser() { return {type: UiActionTypes.LOGOUT_USER }}
+export function openLoginDialog() { return {type: UiActionTypes.OPEN_LOGIN_DIALOG }}
+export function closeLoginDialog() { return {type: UiActionTypes.CLOSE_LOGIN_DIALOG }}
+export function openSignupDialog() { return {type: UiActionTypes.OPEN_SIGNUP_DIALOG }}
+export function closeSignupDialog() { return {type: UiActionTypes.CLOSE_SIGNUP_DIALOG }}

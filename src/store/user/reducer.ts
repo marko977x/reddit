@@ -1,29 +1,28 @@
 import { NormalizedObjects } from "..";
 import { Reducer } from "redux";
-import { UserActionTypes, UserState } from "./types";
-import { AppActionTypes } from "../app/types";
-import { PostActionTypes } from "../post/types";
+import { UserActionTypes, UserState, SignUpAction, LikePostAction, LikeCommentAction, DislikePostAction, DislikeCommentAction, LoadUsersSuccessAction } from "./types";
+import { PostActionTypes, AddPostAction } from "../post/types";
 
 const initialState: NormalizedObjects<UserState> = {
   byId: {},
-  allIds: []
+  allIds: [],
+  isLoaded: false
 }
 
 const reducer: Reducer<NormalizedObjects<UserState>> = (state = initialState, action) => {
   switch (action.type) {
-    case AppActionTypes.FETCH_DATA: { return state; }
     case UserActionTypes.SIGN_UP: {
-      const userId = action.payload.id;
+      const signUpData = (action as SignUpAction).signUpData;
       return {
         ...state,
         byId: {
           ...state.byId,
-          [userId]: {
-            ...state.byId[userId],
-            id: userId,
-            username: action.payload.username,
-            email: action.payload.email,
-            password: action.payload.password,
+          [signUpData.id]: {
+            ...state.byId[signUpData.id],
+            id: signUpData.id,
+            username: signUpData.username,
+            email: signUpData.email,
+            password: signUpData.password,
             posts: [],
             comments: [],
             likedPosts: [],
@@ -32,16 +31,18 @@ const reducer: Reducer<NormalizedObjects<UserState>> = (state = initialState, ac
             dislikedComments: []
           }
         },
-        allIds: {
-          ...state.allIds, userId
-        }
+        allIds: [ ...state.allIds, signUpData.id ]
       }
     }
-    case UserActionTypes.LOAD_USERS: {
-      return action.payload;
+    case UserActionTypes.LOAD_USERS_SUCCESS: {
+      return {
+        ...state,
+        ...(action as LoadUsersSuccessAction).users,
+        isLoaded: true
+      }
     }
     case UserActionTypes.LIKE_POST: {
-      const { userId, postId } = action.payload;
+      const { userId, postId } = (action as LikePostAction);
       let {likedPosts, dislikedPosts} = state.byId[userId];
 
       likedPosts = alreadyLiked(likedPosts, postId) ? 
@@ -60,7 +61,7 @@ const reducer: Reducer<NormalizedObjects<UserState>> = (state = initialState, ac
       }
     }
     case UserActionTypes.DISLIKE_POST: {
-      const { userId, postId } = action.payload;
+      const { userId, postId } = (action as DislikePostAction);
       let { likedPosts, dislikedPosts } = state.byId[userId];
 
       dislikedPosts = alreadyDisliked(dislikedPosts, postId) ?
@@ -78,7 +79,7 @@ const reducer: Reducer<NormalizedObjects<UserState>> = (state = initialState, ac
       }
     }
     case UserActionTypes.LIKE_COMMENT: {
-      const { userId, commentId } = action.payload;
+      const { userId, commentId } = (action as LikeCommentAction);
       let { likedComments, dislikedComments } = state.byId[userId];
 
       likedComments = alreadyLiked(likedComments, commentId) ?
@@ -96,7 +97,7 @@ const reducer: Reducer<NormalizedObjects<UserState>> = (state = initialState, ac
       }
     }
     case UserActionTypes.DISLIKE_COMMENT: {
-      const { userId, commentId } = action.payload;
+      const { userId, commentId } = (action as DislikeCommentAction);
       let { likedComments, dislikedComments } = state.byId[userId];
 
       dislikedComments = alreadyDisliked(dislikedComments, commentId) ?
@@ -114,7 +115,8 @@ const reducer: Reducer<NormalizedObjects<UserState>> = (state = initialState, ac
       }
     }
     case PostActionTypes.ADD_POST: {
-      const post = action.payload;
+      const post = (action as AddPostAction).post;
+      console.log(post);
       return {
         ...state,
         byId: {

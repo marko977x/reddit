@@ -1,8 +1,8 @@
 import * as saga from "redux-saga/effects";
-import { PostActionTypes } from "./types";
+import { PostActionTypes, AddPostAction, AddCommentToPostAction } from "./types";
 import { apiFetch } from "../../services/auth";
 import addCommentToDb from "../comment/saga";
-import { UserActionTypes } from "../user/types";
+import { UserActionTypes, LikePostAction, DislikePostAction } from "../user/types";
 import { POSTS_RESOURCE_URL, USERS_RESOURCE_URL } from "..";
 
 export function* postSaga() {
@@ -16,13 +16,13 @@ function* watchRequests() {
   yield saga.takeEvery(UserActionTypes.DISLIKE_POST, likeDislikeUpdate);
 }
 
-function* addPost(action: any) {
-  yield apiFetch('POST', POSTS_RESOURCE_URL, action.payload);
+function* addPost(action: AddPostAction) {
+  yield apiFetch('POST', POSTS_RESOURCE_URL, action.post);
 }
 
-function* addCommentToPost(action: any) {
-  yield addCommentToDb(action.payload);
-  yield updatePostCommentsArray(action.payload);
+function* addCommentToPost(action: AddCommentToPostAction) {
+  yield addCommentToDb(action.comment);
+  yield updatePostCommentsArray(action.comment);
 }
 
 function* updatePostCommentsArray(comment: any) {
@@ -31,9 +31,9 @@ function* updatePostCommentsArray(comment: any) {
   yield apiFetch('PUT', POSTS_RESOURCE_URL + post.id, post);
 }
 
-function* likeDislikeUpdate(action: any) {
-  yield updatePost(action.payload.postId);
-  yield updateUser(action.payload.userId);
+function* likeDislikeUpdate(action: LikePostAction | DislikePostAction) {
+  yield updatePost(action.postId);
+  yield updateUser(action.userId);
 }
 
 export function* updateUser(userId: string) {

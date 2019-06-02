@@ -6,7 +6,6 @@ import { UiState } from '../store/ui/types';
 import { NormalizedObjects } from '../store';
 import { PostState } from '../store/post/types';
 import Header from '../components/header/Header';
-import { withRouter } from 'react-router';
 
 interface PropsFromState {
   ui: UiState,
@@ -19,7 +18,7 @@ class Home extends Component<allProps> {
   render() {
     return (
       <div>
-        <Header isLoggedUser={this.props.ui.loggedUser.id === "" ? false : true}></Header>
+        <Header isLoggedUser={this.props.ui.loggedUser === "" ? false : true}></Header>
         <div className={styles.postsContainer}>
           {this.props.ui.shownPosts.map(post => {
             return (
@@ -42,4 +41,4 @@ const mapStateToProps = (rootReducer: any) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Home) as any);
+export default connect(mapStateToProps)(Home);

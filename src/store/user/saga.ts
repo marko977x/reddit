@@ -1,9 +1,9 @@
 import * as saga from "redux-saga/effects";
-import { UserActionTypes, UserState } from "./types";
+import { UserActionTypes, UserState, SignUpAction } from "./types";
 import { apiFetch } from "../../services/auth";
-import { PostActionTypes } from "../post/types";
+import { PostActionTypes, AddCommentToPostAction, AddPostAction } from "../post/types";
 import { getUsers } from "../post/saga";
-import { CommentActionTypes } from "../comment/types";
+import { CommentActionTypes, ReplyToCommentAction } from "../comment/types";
 import { USERS_RESOURCE_URL } from "..";
 
 export function* userSaga() {
@@ -17,9 +17,9 @@ function* watchRequests() {
   yield saga.takeEvery(CommentActionTypes.REPLY_TO_COMMENT, addComment);
 }
 
-function* addUser(action: any) {
+function* addUser(action: SignUpAction) {
   let user: UserState = {
-    ...action.payload,
+    ...action.signUpData,
     comments: [],
     posts: [],
     likedPosts: [],
@@ -30,12 +30,12 @@ function* addUser(action: any) {
   yield apiFetch('POST', USERS_RESOURCE_URL, user);
 }
 
-function* addPost(action: any) {
-  yield updateUser(action.payload.authorId);
+function* addPost(action: AddPostAction) {
+  yield updateUser(action.post.authorId);
 }
 
-function* addComment(action: any) {
-  yield updateUser(action.payload.authorId);
+function* addComment(action: AddCommentToPostAction) {
+  yield updateUser(action.comment.authorId);
 }
 
 function* updateUser(userId: string) {

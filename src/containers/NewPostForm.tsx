@@ -51,7 +51,7 @@ class NewPostForm extends Component<AllProps, IState> {
 
     return (
       <div>
-        <Header isLoggedUser={this.props.ui.loggedUser.id === "" ? false : true}></Header>
+        <Header isLoggedUser={this.props.ui.loggedUser === "" ? false : true}></Header>
         <div className={styles.cardContainer}>
           <Card className={styles.card}>
             <CardContent>
@@ -105,7 +105,7 @@ class NewPostForm extends Component<AllProps, IState> {
     if(this.postValidation()) {
       this.props.addPost({
         id: shortid.generate(),
-        authorId: this.props.ui.loggedUser.id,
+        authorId: this.props.ui.loggedUser,
         likes: [],
         dislikes: [],
         comments: [],

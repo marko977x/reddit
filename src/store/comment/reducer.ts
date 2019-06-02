@@ -1,50 +1,55 @@
-import { CommentActionTypes, CommentState } from "./types";
+import { CommentActionTypes, CommentState, LoadCommentsAction, ReplyToCommentAction } from "./types";
 import { Reducer } from "redux";
 import { NormalizedObjects } from "..";
-import { PostActionTypes } from "../post/types";
+import { PostActionTypes, AddCommentToPostAction } from "../post/types";
 import { AppActionTypes } from "../app/types";
-import { UserActionTypes } from "../user/types";
+import { UserActionTypes, LikeCommentAction, DislikeCommentAction } from "../user/types";
 import { alreadyLiked, removeFrom, addTo, alreadyDisliked } from "../user/reducer";
 
 const initialState: NormalizedObjects<CommentState> = {
   byId: {},
-  allIds: []
+  allIds: [],
+  isLoaded: false
 }
 
 const reducer: Reducer<NormalizedObjects<CommentState>> = (state = initialState, action) => {
   switch (action.type) {
     case AppActionTypes.FETCH_DATA: { return state; }
-    case CommentActionTypes.LOAD_COMMENTS: {
-      return action.payload;
+    case CommentActionTypes.LOAD_COMMENTS_SUCCESS: {
+      return {
+        ...(action as LoadCommentsAction).comments,
+        isLoaded: true
+      }
     }
     case PostActionTypes.ADD_COMMENT_TO_POST: {
-      const id = action.payload.id;
+      const comment = (action as AddCommentToPostAction).comment;
       return {
         ...state,
         byId: {
           ...state.byId,
-          [id]: action.payload
+          [comment.id]: comment
         },
-        allIds: [...state.allIds, id]
+        allIds: [...state.allIds, comment.id]
       }
     }
     case CommentActionTypes.REPLY_TO_COMMENT: {
-      const { id, parentCommentId } = action.payload;
+      const comment = (action as ReplyToCommentAction).comment;
+      const parentCommentId: string = comment.parentCommentId as string;
       return {
         ...state,
         byId: {
           ...state.byId,
           [parentCommentId]: {
             ...state.byId[parentCommentId],
-            comments: [...state.byId[parentCommentId].comments, id]
+            comments: [...state.byId[parentCommentId].comments, comment.id]
           },
-          [id]: action.payload
+          [comment.id]: comment
         },
-        allIds: [...state.allIds, id]
+        allIds: [...state.allIds, comment.id]
       }
     }
     case UserActionTypes.LIKE_COMMENT: {
-      const { commentId, userId } = action.payload;
+      const { commentId, userId } = (action as LikeCommentAction);
       let {likes, dislikes} = state.byId[commentId];
 
       likes = alreadyLiked(likes, userId) ?
@@ -55,7 +60,7 @@ const reducer: Reducer<NormalizedObjects<CommentState>> = (state = initialState,
       return setState(state, commentId, likes, dislikes);
     }
     case UserActionTypes.DISLIKE_COMMENT: {
-      const { commentId, userId } = action.payload;
+      const { commentId, userId } = (action as DislikeCommentAction);
       let {likes, dislikes} = state.byId[commentId];
 
       dislikes = alreadyDisliked(dislikes, userId) ?

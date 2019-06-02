@@ -10,8 +10,11 @@ import { fetchData } from './store/app/action';
 const store = configureStore();
 
 class Root extends Component {
-  render() {
+  componentDidMount() {
     store.dispatch(fetchData());
+  }
+
+  render() {
     return (
       <Provider store={store}>
         <App />

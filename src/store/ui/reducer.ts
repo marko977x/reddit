@@ -1,22 +1,13 @@
 import { UiState, UiActionTypes } from "./types";
 import { Reducer } from "redux";
-import { PostActionTypes } from "../post/types";
-import { UserActionTypes } from "../user/types";
+import { PostActionTypes, LoadPostsAction, AddPostAction } from "../post/types";
+import { SetTopicsAction, SetLoggedUserAction } from "./action";
+import { AppActionTypes } from "../app/types";
+import { getItemFromLocalStorage, LOGGED_USER_KEY } from "../../services/local-storage";
 
 const initialState: UiState = {
   isOpenedSinglePost: false,
-  loggedUser: {
-    comments: [],
-    email: "",
-    id: "",
-    password: "",
-    posts: [],
-    username: "",
-    likedPosts: [],
-    dislikedPosts: [],
-    likedComments: [],
-    dislikedComments: []
-  },
+  loggedUser: "",
   openedPostId: "",
   shownPosts: [],
   isLoginDialogOpened: false,
@@ -26,42 +17,36 @@ const initialState: UiState = {
 
 const reducer: Reducer<UiState> = (state = initialState, action) => {
   switch (action.type) {
+    case AppActionTypes.FETCH_DATA: {
+      const loggedUser: string | null = getItemFromLocalStorage<string>(LOGGED_USER_KEY);
+      if(loggedUser) return { ...state, loggedUser }
+      else return state;
+    }
     case PostActionTypes.ADD_POST: {
       return {
         ...state, 
-        shownPosts: [...state.shownPosts, action.payload.id]
+        shownPosts: [...state.shownPosts, (action as AddPostAction).post.id]
       }
     }
     case UiActionTypes.SET_LOGGED_USER: {
       return {
-        ...state, loggedUser: action.payload
+        ...state, loggedUser: (action as SetLoggedUserAction).user
       }
     }
     case UiActionTypes.LOGOUT_USER: {
       return {
         ...state,
-        loggedUser: {
-          comments: [],
-          posts: [],
-          email: "",
-          id: "",
-          password: "",
-          username: "",
-          likedPosts: [],
-          dislikedPosts: [],
-          likedComments: [],
-          dislikedComments: []
-        }
+        loggedUser: ""
       }
     }
-    case PostActionTypes.LOAD_POSTS: {
+    case PostActionTypes.LOAD_POSTS_SUCCESS: {
       return {
-        ...state, shownPosts: action.payload.allIds
+        ...state, shownPosts: (action as LoadPostsAction).posts.allIds
       }
     }
     case UiActionTypes.SET_TOPICS: {
       return {
-        ...state, topics: action.payload
+        ...state, topics: (action as SetTopicsAction).topics
       }
     }
     case UiActionTypes.OPEN_LOGIN_DIALOG: {
@@ -75,60 +60,6 @@ const reducer: Reducer<UiState> = (state = initialState, action) => {
     }
     case UiActionTypes.CLOSE_SIGNUP_DIALOG: {
       return {...state, isSignupDialogOpened: false}
-    }
-    case UserActionTypes.LIKE_POST: {
-      const {postId} = action.payload;
-      const likes = state.loggedUser.likedPosts.includes(postId) ?
-        state.loggedUser.likedPosts.filter(id => id !== postId) :
-        [...state.loggedUser.likedPosts, postId];
-      const dislikes = state.loggedUser.dislikedPosts.filter(id => id !== postId);
-      return {...state, loggedUser: {
-        ...state.loggedUser,
-        likedPosts: likes,
-        dislikedPosts: dislikes
-      }}
-    }
-    case UserActionTypes.DISLIKE_POST: {
-      const { postId } = action.payload;
-      const dislikes = state.loggedUser.dislikedPosts.includes(postId) ?
-        state.loggedUser.dislikedPosts.filter(id => id !== postId) :
-        [...state.loggedUser.dislikedPosts, postId];
-      const likes = state.loggedUser.likedPosts.filter(id => id !== postId);
-      return {
-        ...state, loggedUser: {
-          ...state.loggedUser,
-          dislikedPosts: dislikes,
-          likedPosts: likes
-        }
-      }
-    }
-    case UserActionTypes.LIKE_COMMENT: {
-      const { commentId } = action.payload;
-      const likes = state.loggedUser.likedComments.includes(commentId) ?
-        state.loggedUser.likedComments.filter(id => id !== commentId) :
-        [...state.loggedUser.likedComments, commentId];
-      const dislikes = state.loggedUser.dislikedComments.filter(id => id !== commentId);
-      return {
-        ...state, loggedUser: {
-          ...state.loggedUser,
-          likedComments: likes,
-          dislikedComments: dislikes
-        }
-      }
-    }
-    case UserActionTypes.DISLIKE_COMMENT: {
-      const { commentId } = action.payload;
-      const dislikes = state.loggedUser.dislikedComments.includes(commentId) ?
-        state.loggedUser.dislikedComments.filter(id => id !== commentId) :
-        [...state.loggedUser.dislikedComments, commentId];
-      const likes = state.loggedUser.likedComments.filter(id => id !== commentId);
-      return {
-        ...state, loggedUser: {
-          ...state.loggedUser,
-          dislikedComments: dislikes,
-          likedComments: likes
-        }
-      }
     }
     default: return state;
   }

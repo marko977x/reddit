@@ -1,7 +1,7 @@
 import * as saga from "redux-saga/effects";
-import { CommentActionTypes } from "./types";
+import { CommentActionTypes, ReplyToCommentAction } from "./types";
 import { apiFetch } from "../../services/auth";
-import { UserActionTypes } from "../user/types";
+import { UserActionTypes, LikeCommentAction, DislikeCommentAction } from "../user/types";
 import { updateUser } from "../post/saga";
 import { COMMENTS_RESOURCE_URL } from "..";
 
@@ -15,9 +15,9 @@ function* watchFetchRequest() {
   yield saga.takeEvery(UserActionTypes.DISLIKE_COMMENT, likeDislikeUpdate);
 }
 
-function* replyToComment(action: any) {
-  yield addCommentToDb(action.payload);
-  yield updateParentComment(action.payload);
+function* replyToComment(action: ReplyToCommentAction) {
+  yield addCommentToDb(action.comment);
+  yield updateParentComment(action.comment);
 }
 
 export default function* addCommentToDb(comment: any) {
@@ -31,9 +31,9 @@ function* updateParentComment(comment: any) {
   yield apiFetch('PUT', COMMENTS_RESOURCE_URL + parentComment.id, parentComment);
 }
 
-function* likeDislikeUpdate(action: any) {
-  yield updateUser(action.payload.userId);
-  yield updateComment(action.payload.commentId);
+function* likeDislikeUpdate(action: LikeCommentAction | DislikeCommentAction) {
+  yield updateUser(action.userId);
+  yield updateComment(action.commentId);
 }
 
 function* updateComment(commentId: string) {

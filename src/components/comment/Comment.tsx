@@ -8,11 +8,10 @@ import CommentForm from '../commentForm/CommentForm';
 import { connect } from 'react-redux';
 import { UserState } from '../../store/user/types';
 import { CommentState } from '../../store/comment/types';
-import { NormalizedObjects } from '../../store';
 
 interface PropsFromState {
   commentState: CommentState,
-  users: NormalizedObjects<UserState>
+  user: UserState
 }
 
 interface IProps {
@@ -33,17 +32,17 @@ class Comment extends Component<allProps, IState> {
   }
   
   render() {
-    const comment: CommentState = this.props.commentState;
-    const user: UserState = this.props.users.byId[comment.authorId];
+    if(!this.props.commentState || !this.props.user) return(<div></div>);
+    
     return (
       <div>
         <Card className={styles.comment}>
           <CardContent className={styles.content}>
             <Typography className={styles.caption} variant="caption">
-              Answer by {user.username}
+              Answer by {this.props.user.username}
             </Typography>
             <CardContent>
-              <Typography variant="body1">{comment.content}</Typography>
+              <Typography variant="body1">{this.props.commentState.content}</Typography>
             </CardContent>
             <Collapse in={this.state.expandCommentForm}>
               <CommentForm 
@@ -55,7 +54,7 @@ class Comment extends Component<allProps, IState> {
           <CardActions className={styles.commentSidebar}>
             <Likes 
               parentComponentId={this.props.commentState.id}
-              likes={comment.likesCount} 
+              likes={this.props.commentState.likesCount} 
               IsInCommentSection={true}
               parent={this.props.commentState}>
             </Likes>
@@ -73,7 +72,7 @@ class Comment extends Component<allProps, IState> {
             </IconButton>
           </CardActions>
           <Collapse in={this.state.expandComments} unmountOnExit>
-            {comment.comments.map(comment => (
+            {this.props.commentState.comments.map(comment => (
               <ConnectedComment key={comment} id={comment}></ConnectedComment>
             ))}
           </Collapse>
@@ -84,10 +83,16 @@ class Comment extends Component<allProps, IState> {
 }
 
 const mapStateToProps = (rootReducer: any, ownProps: any) => {
-  return {
-    commentState: rootReducer.comments.byId[ownProps.id],
-    users: rootReducer.users
-  }
+  if(rootReducer.users.isLoaded && rootReducer.comments.isLoaded)
+    return {
+      commentState: rootReducer.comments.byId[ownProps.id],
+      user: rootReducer.users.byId[rootReducer.comments.byId[ownProps.id].authorId]
+    }
+  else 
+    return {
+      commentState: null,
+      user: null
+    }
 }
 
 const ConnectedComment = connect(mapStateToProps)(Comment);

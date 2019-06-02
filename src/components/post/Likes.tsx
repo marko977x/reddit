@@ -12,9 +12,12 @@ import { Dispatch } from 'redux';
 import { openLoginDialog } from '../../store/ui/action';
 import { CommentState } from '../../store/comment/types';
 import { PostState } from '../../store/post/types';
+import { NormalizedObjects } from '../../store';
+import { UserState } from '../../store/user/types';
 
 interface PropsFromState {
-  ui: UiState
+  ui: UiState,
+  users: NormalizedObjects<UserState>
 }
 
 interface IProps {
@@ -55,10 +58,13 @@ class Likes extends Component<AllProps, IState> {
   }
 
   update() {
+    if(this.props.ui.loggedUser === "") return;
+
     const { likedPosts, likedComments, dislikedPosts, dislikedComments } =
-      this.props.ui.loggedUser;
+      this.props.users.byId[this.props.ui.loggedUser];
     let isLiked: boolean = false;
     let isDisliked: boolean = false;
+    
     if (this.props.IsInCommentSection) {
       isLiked = likedComments.includes(this.props.parentComponentId);
       isDisliked = dislikedComments.includes(this.props.parentComponentId);
@@ -89,20 +95,20 @@ class Likes extends Component<AllProps, IState> {
   }
 
   onLikeClick = () => {
-    this.props.ui.loggedUser.id !== "" ? 
+    this.props.ui.loggedUser !== "" ? 
       this.like() : this.props.openLoginDialog();
   }
 
   like = () => {
     if (this.props.IsInCommentSection) {
       this.props.likeComment({
-        userId: this.props.ui.loggedUser.id,
+        userId: this.props.ui.loggedUser,
         commentId: this.props.parentComponentId
       });
     }
     else {
       this.props.likePost({
-        userId: this.props.ui.loggedUser.id,
+        userId: this.props.ui.loggedUser,
         postId: this.props.parentComponentId
       });
     }
@@ -110,20 +116,20 @@ class Likes extends Component<AllProps, IState> {
   }
 
   onDislikeClick = () => {
-    this.props.ui.loggedUser.id !== "" ? 
+    this.props.ui.loggedUser !== "" ? 
       this.dislike() : this.props.openLoginDialog(); 
   }
 
   dislike = () => {
     if (this.props.IsInCommentSection) {
       this.props.dislikeComment({
-        userId: this.props.ui.loggedUser.id,
+        userId: this.props.ui.loggedUser,
         commentId: this.props.parentComponentId
       });
     }
     else {
       this.props.dislikePost({
-        userId: this.props.ui.loggedUser.id,
+        userId: this.props.ui.loggedUser,
         postId: this.props.parentComponentId
       });
     }
@@ -133,7 +139,8 @@ class Likes extends Component<AllProps, IState> {
 
 const mapStateToProps = (rootReducer: any, ownProps: any) => {
   return {
-    ui: rootReducer.ui
+    ui: rootReducer.ui,
+    users: rootReducer.users
   }
 }
 

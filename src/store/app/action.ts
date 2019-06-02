@@ -1,4 +1,3 @@
-import { action } from "typesafe-actions";
 import { AppActionTypes } from "./types";
 
-export const fetchData = () => action(AppActionTypes.FETCH_DATA);
+export function fetchData() { return {type: AppActionTypes.FETCH_DATA }}

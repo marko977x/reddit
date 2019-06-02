@@ -6,27 +6,44 @@
       "topic": "Topic",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
       "likes": [
+        "62Wv5g3xs",
         "7x25RQ2Sl",
-        "62Wv5g3xs"
+        "LQpqWgiZG"
       ],
       "dislikes": [],
-      "likesCount": 2,
+      "likesCount": 3,
       "comments": [
         "comment1",
-        "HRTObbfft"
+        "HRTObbfft",
+        "KdDRIYg19"
       ]
     },
     {
       "id": "Si-SCaMro",
       "authorId": "7x25RQ2Sl",
       "likes": [
-        "7x25RQ2Sl"
+        "7x25RQ2Sl",
+        "LQpqWgiZG"
+      ],
+      "dislikes": [],
+      "comments": [
+        "xXbMpLzog"
+      ],
+      "likesCount": 2,
+      "content": "Donec pretium ipsum non mattis volutpat. Maecenas sed leo a sem porta placerat. Phasellus laoreet egestas nulla, sit amet molestie enim gravida sit amet.",
+      "topic": "Web Development"
+    },
+    {
+      "id": "63UJlnSbI",
+      "authorId": "LQpqWgiZG",
+      "likes": [
+        "LQpqWgiZG"
       ],
       "dislikes": [],
       "comments": [],
       "likesCount": 1,
-      "content": "Donec pretium ipsum non mattis volutpat. Maecenas sed leo a sem porta placerat. Phasellus laoreet egestas nulla, sit amet molestie enim gravida sit amet.",
-      "topic": "Web Development"
+      "content": "Computer Science post",
+      "topic": "Computer Science"
     }
   ],
   "comments": [
@@ -37,10 +54,11 @@
       "parentCommentId": "",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
       "likes": [
-        "62Wv5g3xs"
+        "62Wv5g3xs",
+        "LQpqWgiZG"
       ],
       "dislikes": [],
-      "likesCount": 1,
+      "likesCount": 2,
       "comments": []
     },
     {
@@ -50,11 +68,12 @@
       ],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat.",
       "id": "HRTObbfft",
-      "likes": [
-        "7x25RQ2Sl"
+      "likes": [],
+      "dislikes": [
+        "7x25RQ2Sl",
+        "LQpqWgiZG"
       ],
-      "dislikes": [],
-      "likesCount": 1,
+      "likesCount": -2,
       "parentCommentId": null,
       "postId": "post1"
     },
@@ -63,12 +82,51 @@
       "comments": [],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat.",
       "id": "l4Q7Einee",
-      "likes": [],
+      "likes": [
+        "7x25RQ2Sl"
+      ],
       "dislikes": [
         "62Wv5g3xs"
       ],
-      "likesCount": -1,
+      "likesCount": 0,
       "parentCommentId": "HRTObbfft",
+      "postId": null
+    },
+    {
+      "authorId": "7x25RQ2Sl",
+      "comments": [],
+      "content": "Komentar",
+      "id": "KdDRIYg19",
+      "likes": [],
+      "dislikes": [],
+      "likesCount": 0,
+      "parentCommentId": null,
+      "postId": "post1"
+    },
+    {
+      "authorId": "7x25RQ2Sl",
+      "comments": [
+        "TN20NETc1"
+      ],
+      "content": "Komentar",
+      "id": "xXbMpLzog",
+      "likes": [
+        "7x25RQ2Sl"
+      ],
+      "dislikes": [],
+      "likesCount": 1,
+      "parentCommentId": null,
+      "postId": "Si-SCaMro"
+    },
+    {
+      "authorId": "7x25RQ2Sl",
+      "comments": [],
+      "content": "Komentar",
+      "id": "TN20NETc1",
+      "likes": [],
+      "dislikes": [],
+      "likesCount": 0,
+      "parentCommentId": "xXbMpLzog",
       "postId": null
     }
   ],
@@ -105,13 +163,39 @@
       ],
       "comments": [],
       "likedPosts": [
+        "Si-SCaMro",
         "post1"
       ],
       "dislikedPosts": [],
       "likedComments": [
-        "HRTObbfft"
+        "xXbMpLzog",
+        "l4Q7Einee"
       ],
-      "dislikedComments": []
+      "dislikedComments": [
+        "HRTObbfft"
+      ]
+    },
+    {
+      "id": "LQpqWgiZG",
+      "username": "marko12",
+      "email": "marko@gmail.com",
+      "password": "marko12",
+      "posts": [
+        "63UJlnSbI"
+      ],
+      "comments": [],
+      "likedPosts": [
+        "63UJlnSbI",
+        "Si-SCaMro",
+        "post1"
+      ],
+      "dislikedPosts": [],
+      "likedComments": [
+        "comment1"
+      ],
+      "dislikedComments": [
+        "HRTObbfft"
+      ]
     }
   ],
   "topics": [

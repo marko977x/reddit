@@ -10,6 +10,7 @@ import { setLoggedUser, closeSignupDialog } from '../../store/ui/action';
 import shortid from "shortid";
 import { validateEmail, validatePassword, validateUsername } from '../../services/auth';
 import { signUp } from '../../store/user/action';
+import { setItemToLocalStorage, LOGGED_USER_KEY } from '../../services/local-storage';
 
 interface propsFromState {
   users: NormalizedObjects<UserState>,
@@ -101,18 +102,10 @@ class SignUp extends Component<allProps, IState> {
         password: this.state.password,
         id: userId
       });
-      this.props.setLoggedUser({
-        ...this.state, 
-        id:userId, 
-        comments:[], 
-        posts:[],
-        likedPosts: [],
-        dislikedPosts: [],
-        likedComments: [],
-        dislikedComments: []
-      });
+      this.props.setLoggedUser(userId);
       this.props.closeDialog();
       this.setState({email: "", password: "", username: ""});
+      setItemToLocalStorage<string>(LOGGED_USER_KEY, userId);
     }
   }
 
@@ -167,7 +160,7 @@ const mapStateToProps = (rootReducer: any) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     signUp: (userData: SignUpData) => dispatch(signUp(userData)),
-    setLoggedUser: (user: UserState) => dispatch(setLoggedUser(user)),
+    setLoggedUser: (userId: string) => dispatch(setLoggedUser(userId)),
     closeDialog: () => dispatch(closeSignupDialog())
   }
 }

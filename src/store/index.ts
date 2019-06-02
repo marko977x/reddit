@@ -19,7 +19,8 @@ export const POSTS_RESOURCE_URL = DATABASE_URL + "posts/";
 
 export interface NormalizedObjects<T> {
   byId: { [id: string]: T },
-  allIds: string[]
+  allIds: string[],
+  isLoaded: boolean
 }
 
 export const rootReducer = combineReducers({
