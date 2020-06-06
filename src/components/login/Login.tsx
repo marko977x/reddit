@@ -41,13 +41,13 @@ class Login extends Component<allProps, IState> {
         <Dialog open={this.props.isOpen}>
           <DialogTitle>Login</DialogTitle>
           <DialogContent>
-            <TextField 
+            <TextField
               helperText={this.state.emailError.errorText} error={this.state.emailError.error}
               onChange={this.onEmailChange} value={this.state.email}
               margin="dense" label="Email" type="email" fullWidth />
-            <TextField 
+            <TextField
               helperText={this.state.passwordError.errorText} error={this.state.passwordError.error}
-              onChange={this.onPasswordChange} value={this.state.password} 
+              onChange={this.onPasswordChange} value={this.state.password}
               margin="dense" label="Password" type="password" fullWidth />
           </DialogContent>
           <DialogActions>
@@ -60,26 +60,26 @@ class Login extends Component<allProps, IState> {
   }
 
   onEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ email: event.currentTarget.value });
+    this.setState({ email: event.currentTarget.value, emailError: { error: false, errorText: "" } });
   }
 
   onPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ password: event.currentTarget.value });
+    this.setState({ password: event.currentTarget.value, passwordError: { error: false, errorText: "" } });
   }
 
   onSubmitClick = () => {
     let user = getUserByEmail(this.props.users, this.state.email);
-    if(user != null) {
-      if(user.password === this.state.password) {
+    if (user != null) {
+      if (user.password === this.state.password) {
         this.props.setLoggedUser(user.id);
         this.props.closeDialog();
-        this.setState({email: "", password: ""});
+        this.setState({ email: "", password: "" });
         setItemToLocalStorage<string>(LOGGED_USER_KEY, user.id);
       }
       else {
         this.setState({
-          passwordError: {error: true, errorText: "Invalid password"},
-          emailError: {error: false, errorText: ""}
+          passwordError: { error: true, errorText: "Invalid password" },
+          emailError: { error: false, errorText: "" }
         });
       }
     }

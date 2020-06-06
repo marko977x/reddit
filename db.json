@@ -1,201 +1,144 @@
 {
   "posts": [
     {
-      "id": "post1",
-      "authorId": "62Wv5g3xs",
-      "topic": "Topic",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "likes": [
-        "62Wv5g3xs",
-        "7x25RQ2Sl",
-        "LQpqWgiZG"
-      ],
-      "dislikes": [],
-      "likesCount": 3,
-      "comments": [
-        "comment1",
-        "HRTObbfft",
-        "KdDRIYg19"
-      ]
-    },
-    {
-      "id": "Si-SCaMro",
+      "id": "cVQiTeoAE",
       "authorId": "7x25RQ2Sl",
       "likes": [
-        "7x25RQ2Sl",
-        "LQpqWgiZG"
+        "7x25RQ2Sl"
       ],
       "dislikes": [],
       "comments": [
-        "xXbMpLzog"
+        "iT-2o0-hB",
+        "cWWx5lM_2"
       ],
-      "likesCount": 2,
-      "content": "Donec pretium ipsum non mattis volutpat. Maecenas sed leo a sem porta placerat. Phasellus laoreet egestas nulla, sit amet molestie enim gravida sit amet.",
-      "topic": "Web Development"
+      "likesCount": 1,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
+      "topic": "Sport"
     },
     {
-      "id": "63UJlnSbI",
-      "authorId": "LQpqWgiZG",
+      "id": "62NmzZu4o",
+      "authorId": "7x25RQ2Sl",
+      "likes": [],
+      "dislikes": [],
+      "comments": [
+        "LkrLuWlFo"
+      ],
+      "likesCount": 0,
+      "content": "Sed faucibus molestie nisl, a bibendum neque porta sed. In neque urna, viverra et nisl eget, fringilla luctus erat. Integer sed lacus feugiat, elementum eros at, interdum magna. Aenean et mauris id sapien luctus luctus ut sit amet diam.",
+      "topic": "Programming"
+    },
+    {
+      "id": "pHI67UGE6",
+      "authorId": "7x25RQ2Sl",
       "likes": [
-        "LQpqWgiZG"
+        "7x25RQ2Sl"
       ],
       "dislikes": [],
       "comments": [],
       "likesCount": 1,
-      "content": "Computer Science post",
-      "topic": "Computer Science"
+      "content": "Fusce sagittis vulputate erat, et hendrerit ligula. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+      "topic": "Basketball"
     }
   ],
   "comments": [
     {
-      "id": "comment1",
-      "authorId": "62Wv5g3xs",
-      "postId": "post1",
-      "parentCommentId": "",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat. Nulla est tortor, lobortis nec odio in, vestibulum fermentum nulla.",
-      "likes": [
-        "62Wv5g3xs",
-        "LQpqWgiZG"
-      ],
-      "dislikes": [],
-      "likesCount": 2,
-      "comments": []
-    },
-    {
-      "authorId": "62Wv5g3xs",
+      "authorId": "7x25RQ2Sl",
       "comments": [
-        "l4Q7Einee"
+        "Et2UhkcHQ"
       ],
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat.",
-      "id": "HRTObbfft",
+      "content": "Cras varius justo ac lorem rutrum, a interdum ligula consequat.",
+      "id": "iT-2o0-hB",
       "likes": [],
-      "dislikes": [
-        "7x25RQ2Sl",
-        "LQpqWgiZG"
-      ],
-      "likesCount": -2,
+      "dislikes": [],
+      "likesCount": 0,
       "parentCommentId": null,
-      "postId": "post1"
+      "postId": "cVQiTeoAE"
     },
     {
-      "authorId": "62Wv5g3xs",
+      "authorId": "7x25RQ2Sl",
       "comments": [],
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse metus erat, semper sit amet ligula in, maximus tincidunt erat.",
-      "id": "l4Q7Einee",
-      "likes": [
-        "7x25RQ2Sl"
-      ],
-      "dislikes": [
-        "62Wv5g3xs"
-      ],
+      "content": "Vivamus ut arcu non lorem sagittis tincidunt.",
+      "id": "Et2UhkcHQ",
+      "likes": [],
+      "dislikes": [],
       "likesCount": 0,
-      "parentCommentId": "HRTObbfft",
+      "parentCommentId": "iT-2o0-hB",
       "postId": null
     },
     {
       "authorId": "7x25RQ2Sl",
       "comments": [],
-      "content": "Komentar",
-      "id": "KdDRIYg19",
+      "content": "Integer aliquam ultricies risus ac gravida.",
+      "id": "EUmCbiknO",
+      "likes": [],
+      "dislikes": [],
+      "likesCount": 0,
+      "parentCommentId": "iT-2o0-hB",
+      "postId": null
+    },
+    {
+      "authorId": "7x25RQ2Sl",
+      "comments": [],
+      "content": "Praesent convallis orci et porta consequat.",
+      "id": "LkrLuWlFo",
       "likes": [],
       "dislikes": [],
       "likesCount": 0,
       "parentCommentId": null,
-      "postId": "post1"
+      "postId": "62NmzZu4o"
     },
     {
       "authorId": "7x25RQ2Sl",
       "comments": [
-        "TN20NETc1"
+        "3nMqw98Vy"
       ],
-      "content": "Komentar",
-      "id": "xXbMpLzog",
+      "content": "Praesent convallis orci et porta consequat.",
+      "id": "cWWx5lM_2",
       "likes": [
         "7x25RQ2Sl"
       ],
       "dislikes": [],
       "likesCount": 1,
       "parentCommentId": null,
-      "postId": "Si-SCaMro"
+      "postId": "cVQiTeoAE"
     },
     {
       "authorId": "7x25RQ2Sl",
       "comments": [],
-      "content": "Komentar",
-      "id": "TN20NETc1",
+      "content": " Praesent finibus ligula et ligula congue.",
+      "id": "3nMqw98Vy",
       "likes": [],
       "dislikes": [],
       "likesCount": 0,
-      "parentCommentId": "xXbMpLzog",
+      "parentCommentId": "cWWx5lM_2",
       "postId": null
     }
   ],
   "users": [
-    {
-      "username": "marko97x",
-      "email": "marko97x@gmail.com",
-      "password": "marko97x",
-      "id": "62Wv5g3xs",
-      "comments": [
-        "comment1"
-      ],
-      "posts": [
-        "post1"
-      ],
-      "likedPosts": [
-        "post1"
-      ],
-      "dislikedPosts": [],
-      "likedComments": [
-        "comment1"
-      ],
-      "dislikedComments": [
-        "l4Q7Einee"
-      ]
-    },
     {
       "id": "7x25RQ2Sl",
       "username": "marko977x",
       "email": "marko977x@gmail.com",
       "password": "marko977x",
       "posts": [
-        "DRK742aPQ"
+        "cVQiTeoAE",
+        "62NmzZu4o",
+        "pHI67UGE6"
       ],
-      "comments": [],
+      "comments": [
+        "Et2UhkcHQ",
+        "iT-2o0-hB",
+        "EUmCbiknO"
+      ],
       "likedPosts": [
-        "Si-SCaMro",
-        "post1"
+        "cVQiTeoAE",
+        "pHI67UGE6"
       ],
       "dislikedPosts": [],
       "likedComments": [
-        "xXbMpLzog",
-        "l4Q7Einee"
+        "cWWx5lM_2"
       ],
-      "dislikedComments": [
-        "HRTObbfft"
-      ]
-    },
-    {
-      "id": "LQpqWgiZG",
-      "username": "marko12",
-      "email": "marko@gmail.com",
-      "password": "marko12",
-      "posts": [
-        "63UJlnSbI"
-      ],
-      "comments": [],
-      "likedPosts": [
-        "63UJlnSbI",
-        "Si-SCaMro",
-        "post1"
-      ],
-      "dislikedPosts": [],
-      "likedComments": [
-        "comment1"
-      ],
-      "dislikedComments": [
-        "HRTObbfft"
-      ]
+      "dislikedComments": []
     }
   ],
   "topics": [
