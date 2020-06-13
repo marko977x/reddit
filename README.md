@@ -25,9 +25,9 @@ Steps to run the application:
 
 * Without an account, you can only search through posts and comments. 
 If you want to create an account, follow the next steps. 
-Click on the SignUp button, enter your email, username and password. 
+Click on the Sign Up button, enter your email, username and password. 
 After that, you'll be able to create new posts and comments as well as liking and disliking other posts and comments.
-* To create a new post click on the AddNewPost button. This will lead you to the new page.
+* To create a new post click on the Add New Post button. This will lead you to the new page.
 Choose your topic and write something interesting you recently heard about.
 * To like or dislike someone's post or comment click on the plus or the minus button. 
 After you've done that, likes count will change accordingly.
