@@ -13,6 +13,7 @@ Steps to run the application:
 
 * Clone the repo.
 * Navigate to the root folder and open a console.
+* Enter the command "npm install" without the quotes.
 * Enter the command "npm run start" without the quotes.
 * Open another one console in the same root folder.
 * Enter the command "npm run json" without the quotes.
