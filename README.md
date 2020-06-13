@@ -20,7 +20,7 @@ Steps to run the application:
 
 <a name="usage"></a>
 # Usage
-<img src="https://media.giphy.com/media/fszoZeH6bxaDktcNvw/giphy.gif" width=480 height=270 align=right></img>
+<img src="https://media.giphy.com/media/hRBMjgnA5xjHLShJJ2/giphy.gif" width=480 height=256 align=right></img>
 
 * Without an account, you can only search through posts and comments. 
 If you want to create an account, follow the next steps. 
